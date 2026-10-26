@@ -36,5 +36,11 @@ uses 4, 8, 12, 16, 24, 32, 48, 64, 80, and 96 pixels. Search radius 16 pixels.
 Buttons radius 8 pixels. Catalog rows use separators and visible focus states.
 
 Search states are idle, loading, success, no match, and error. Details expand
-in place. Installation offers a download and a copyable prompt. Respect reduced
-motion and give controls precise labels.
+in place with a disclosure caret and a distinct white reading surface. On small
+screens, expanded descriptions and supporting details use the full row width.
+Search, disclosure, filter, and platform controls have a minimum 44-pixel target.
+Loading uses the shape of catalog rows;
+visible result counts explain the current view. Installation offers a download
+and a copyable prompt, with stacked platform controls on small screens. Copy
+actions report success or failure. Respect reduced motion and give controls
+precise labels, including the compact mobile search button.

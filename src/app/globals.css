@@ -8,6 +8,8 @@
   --blue-soft: #edf0ff;
   --green: #254c37;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --surface-hover: #eef1e7;
+  --control-height: 44px;
 }
 * {
   box-sizing: border-box;
@@ -57,10 +59,10 @@ a {
 a,
 button {
   transition:
-    color 0.18s var(--ease),
-    background 0.18s var(--ease),
-    border-color 0.18s var(--ease),
-    transform 0.18s var(--ease);
+    color 0.3s var(--ease),
+    background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    transform 0.3s var(--ease);
 }
 button:focus-visible,
 a:focus-visible,
@@ -171,6 +173,7 @@ nav a {
   display: inline-flex;
   gap: 8px;
   align-items: center;
+  min-height: var(--control-height);
 }
 nav a:hover {
   color: var(--accent);
@@ -179,6 +182,13 @@ nav a:hover {
   padding: 8px 12px;
   border: 1px solid #cbd2c3;
   border-radius: 8px;
+}
+.nav-install:hover {
+  background: var(--white);
+  border-color: var(--muted);
+}
+.nav-install-short {
+  display: none;
 }
 .hero {
   padding-top: 80px;
@@ -190,7 +200,7 @@ nav a:hover {
 }
 .hero h1 {
   font-size: 60px;
-  line-height: 1.05;
+  line-height: 1;
   letter-spacing: -0.04em;
   max-width: 680px;
   margin: auto;
@@ -215,11 +225,10 @@ nav a:hover {
   background: white;
   border: 1px solid #cdd5c5;
   border-radius: 16px;
-  box-shadow: 0 12px 40px -28px #4e6248;
+  transition: border-color 0.3s var(--ease);
 }
 .search-form:focus-within {
   border-color: var(--accent);
-  box-shadow: 0 8px 32px -24px #314be8;
 }
 .search-icon {
   color: #66725e;
@@ -275,8 +284,8 @@ nav a:hover {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 14px;
+  line-height: 20px;
   color: var(--muted);
 }
 .try-queries > span {
@@ -288,9 +297,10 @@ nav a:hover {
   gap: 8px;
   border: 0;
   border-bottom: 1px solid #d0d7c9;
-  padding: 4px 0;
+  padding: 12px 0;
   background: none;
-  font-size: 12px;
+  font-size: 14px;
+  min-height: var(--control-height);
 }
 .try-queries button:hover {
   color: var(--accent);
@@ -324,6 +334,9 @@ nav a:hover {
   align-items: end;
   margin-bottom: 24px;
 }
+.section-heading > div {
+  min-width: 0;
+}
 .section-heading h2 {
   font-size: 24px;
   line-height: 32px;
@@ -334,6 +347,7 @@ nav a:hover {
   line-height: 20px;
   color: var(--muted);
   margin-top: 8px;
+  overflow-wrap: anywhere;
 }
 .harness-select {
   display: flex;
@@ -350,6 +364,7 @@ nav a:hover {
   background: var(--paper);
   color: var(--ink);
   font-size: 14px;
+  min-height: var(--control-height);
 }
 .catalog-toolbar {
   display: flex;
@@ -364,6 +379,9 @@ nav a:hover {
   gap: 4px;
   overflow: auto;
   scrollbar-width: none;
+  min-width: 0;
+  padding: 4px;
+  margin: -4px;
 }
 .categories button {
   white-space: nowrap;
@@ -373,6 +391,7 @@ nav a:hover {
   border-radius: 8px;
   background: none;
   color: var(--muted);
+  min-height: var(--control-height);
 }
 .categories button.active {
   background: var(--ink);
@@ -391,14 +410,24 @@ nav a:hover {
   border: 0;
   font-size: 12px;
   color: var(--muted);
+  min-height: var(--control-height);
+  padding: 8px 0;
+}
+.catalog-count {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 20px;
+  font-variant-numeric: tabular-nums;
 }
 .skill-list {
   border-bottom: 1px solid var(--line);
 }
 .skill-row {
   position: relative;
-  display: flex;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) var(--control-height);
+  column-gap: 24px;
   padding: 24px 8px;
   border-bottom: 1px solid var(--line);
   transition: background 0.2s var(--ease);
@@ -407,7 +436,10 @@ nav a:hover {
   border-bottom: 0;
 }
 .skill-row:hover {
-  background: #f0f3e9;
+  background: var(--surface-hover);
+}
+.skill-row.expanded {
+  background: var(--white);
 }
 .category-mark {
   width: 40px;
@@ -455,6 +487,8 @@ nav a:hover {
 .skill-title-line h3 {
   font-size: 18px;
   line-height: 28px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .skill-title-line h3 button {
   text-align: left;
@@ -463,6 +497,9 @@ nav a:hover {
   border: 0;
   font-weight: 550;
   text-transform: capitalize;
+  min-height: var(--control-height);
+  margin-top: -8px;
+  margin-bottom: -8px;
 }
 .skill-title-line h3 button:hover {
   color: var(--accent);
@@ -470,6 +507,7 @@ nav a:hover {
 .publisher {
   font-size: 12px;
   color: var(--muted);
+  overflow-wrap: anywhere;
 }
 .skill-summary {
   font-size: 14px;
@@ -481,6 +519,7 @@ nav a:hover {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  overflow-wrap: anywhere;
 }
 .expanded .skill-summary {
   -webkit-line-clamp: unset;
@@ -492,6 +531,7 @@ nav a:hover {
   margin-top: 12px;
   font-size: 12px;
   color: #62705b;
+  flex-wrap: wrap;
 }
 .skill-tags > span + span {
   position: relative;
@@ -516,9 +556,9 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin-top: 4px;
+  width: var(--control-height);
+  height: var(--control-height);
+  margin-top: -8px;
   flex: none;
   border: 0;
   border-radius: 8px;
@@ -529,6 +569,15 @@ nav a:hover {
   background: #e5ebdc;
   color: var(--accent);
 }
+.row-toggle svg {
+  transition: transform 0.3s var(--ease);
+}
+.expanded .row-toggle svg {
+  transform: rotate(180deg);
+}
+.skill-detail-region {
+  grid-column: 2 / -1;
+}
 .skill-details {
   padding-top: 24px;
   display: grid;
@@ -536,6 +585,9 @@ nav a:hover {
   gap: 24px;
   font-size: 14px;
   line-height: 24px;
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  overflow-wrap: anywhere;
 }
 .skill-details h4 {
   font-size: 12px;
@@ -577,11 +629,21 @@ nav a:hover {
   border: 0;
   padding: 4px 0;
   white-space: nowrap;
+  min-height: var(--control-height);
 }
 .detail-actions a:hover,
 .text-button:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+.skill-details .review-copy-status {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  line-height: 20px;
+  margin: -16px 0 0;
+}
+.review-copy-status:empty {
+  display: none;
 }
 .show-more {
   display: flex;
@@ -616,7 +678,6 @@ nav a:hover {
 .catalog-foot a:hover {
   color: var(--accent);
 }
-.loading-state,
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -628,39 +689,72 @@ nav a:hover {
   border-bottom: 1px solid var(--line);
   padding: 32px;
 }
-.loading-state h3,
 .empty-state h3 {
   font-size: 20px;
   line-height: 28px;
 }
-.loading-state p,
 .empty-state p {
   color: var(--muted);
   max-width: 480px;
   font-size: 14px;
 }
-.spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  display: inline-block;
+.catalog-loading {
+  padding-top: 16px;
+}
+.loading-label {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 20px;
+}
+.skeleton-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 24px 8px;
+  border-bottom: 1px solid var(--line);
+}
+.skeleton-mark,
+.skeleton-content > span {
+  display: block;
+  border-radius: 4px;
+  background: #e5e9df;
+  animation: breathe 1.6s var(--ease) infinite alternate;
+}
+.skeleton-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   flex: none;
 }
-.loading-state .spinner {
-  color: var(--accent);
-  margin-bottom: 8px;
+.skeleton-content {
+  flex: 1;
+  display: grid;
+  gap: 12px;
+  padding-top: 4px;
+}
+.skeleton-title {
+  width: 32%;
+  height: 16px;
+}
+.skeleton-line {
+  width: 88%;
+  height: 12px;
+}
+.skeleton-meta {
+  width: 24%;
+  height: 8px;
 }
 .mode-note {
   font-size: 12px;
   color: var(--muted);
   margin-top: 16px;
 }
-@keyframes spin {
+@keyframes breathe {
+  from {
+    opacity: 0.55;
+  }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }
 .install-section {
@@ -732,6 +826,7 @@ nav a:hover {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 .small-label {
   font-size: 12px;
@@ -796,13 +891,13 @@ nav a:hover {
 }
 .statement {
   font-size: 48px;
-  line-height: 1.1;
+  line-height: 1;
   letter-spacing: -0.03em;
   max-width: 800px;
 }
 .statement span {
   color: #84917c;
-  transition: color 0.8s var(--ease);
+  transition: color 0.6s var(--ease);
 }
 .statement.revealed span {
   color: var(--ink);
@@ -849,6 +944,9 @@ nav a:hover {
   flex: none;
   transition: transform 0.2s var(--ease);
 }
+.faq-list summary:hover {
+  color: var(--accent);
+}
 .faq-list details[open] summary svg {
   transform: rotate(45deg);
 }
@@ -893,6 +991,7 @@ nav a:hover {
   display: inline-flex;
   gap: 4px;
   align-items: center;
+  min-height: var(--control-height);
 }
 .footer-links a:hover {
   color: var(--accent);
@@ -904,7 +1003,7 @@ nav a:hover {
   color: var(--muted);
 }
 .legal {
-  max-width: 800px;
+  max-width: 720px;
   padding: 48px 24px 80px;
   margin: auto;
 }
@@ -922,8 +1021,15 @@ nav a:hover {
 .legal p {
   margin-bottom: 16px;
   color: var(--muted);
+  line-height: 28px;
 }
 .legal > a:not(.brand) {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.legal > a:not(.brand):not(.primary),
+.legal p a {
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -960,6 +1066,7 @@ nav a:hover {
   }
   .hero h1 {
     font-size: 48px;
+    line-height: 1;
   }
   .install-panel {
     padding: 24px;
@@ -995,9 +1102,15 @@ nav a:hover {
     display: none;
   }
   .nav-install {
-    font-size: 12px;
+    font-size: 14px;
     gap: 4px;
     padding: 8px;
+  }
+  .nav-install-full {
+    display: none;
+  }
+  .nav-install-short {
+    display: inline;
   }
   .hero {
     padding-top: 48px;
@@ -1033,7 +1146,7 @@ nav a:hover {
     padding: 12px;
     min-width: 48px;
   }
-  .search-button > span:not(.spinner) {
+  .search-button > span {
     display: none;
   }
   .search-button > svg {
@@ -1048,8 +1161,11 @@ nav a:hover {
     display: none;
   }
   .try-queries button {
-    font-size: 12px;
+    font-size: 14px;
     text-align: left;
+    width: 100%;
+    justify-content: space-between;
+    padding: 12px 0;
   }
   .source-line {
     margin-top: 24px;
@@ -1080,14 +1196,15 @@ nav a:hover {
   }
   .categories {
     width: 100%;
-    gap: 0;
+    gap: 4px;
   }
   .categories button {
     padding: 8px 12px;
-    font-size: 12px;
+    font-size: 14px;
   }
   .skill-row {
-    gap: 12px;
+    grid-template-columns: 32px minmax(0, 1fr) var(--control-height);
+    column-gap: 12px;
     padding: 24px 0;
   }
   .category-mark {
@@ -1117,9 +1234,44 @@ nav a:hover {
   .skill-tags > span + span {
     padding-left: 8px;
   }
-  .row-toggle {
-    width: 24px;
-    height: 24px;
+  .skill-detail-region {
+    grid-column: 1 / -1;
+  }
+  .expanded .skill-content {
+    display: contents;
+  }
+  .expanded .category-mark {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .expanded .skill-title-line {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .expanded .row-toggle {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .expanded .skill-summary {
+    grid-column: 1 / -1;
+    margin-top: 16px;
+    padding: 0 16px;
+  }
+  .expanded .skill-tags {
+    grid-column: 1 / -1;
+    padding: 0 16px;
+  }
+  .skill-details {
+    padding: 24px 16px 0;
+  }
+  .skeleton-row {
+    padding: 24px 0;
+    gap: 12px;
+  }
+  .skeleton-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
   }
   .skill-details {
     grid-template-columns: 1fr;
@@ -1130,7 +1282,7 @@ nav a:hover {
   }
   .detail-actions {
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 8px 16px;
   }
   .catalog-foot {
     flex-direction: column;
@@ -1253,7 +1405,20 @@ nav a:hover {
   background: var(--white);
   color: var(--ink);
   font-size: 14px;
+  min-height: var(--control-height);
+  min-width: 0;
 }
 .download-select + .install-source {
   margin-top: 12px;
+}
+@media (max-width: 600px) {
+  .download-select {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .download-select select,
+  .harness-select select {
+    font-size: 16px;
+  }
 }

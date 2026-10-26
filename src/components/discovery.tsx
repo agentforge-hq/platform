@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  CaretDown,
   Check,
   CheckCircle,
   Copy,
@@ -30,7 +31,9 @@ type SearchState =
   | { kind: "success"; query: string; response: SearchResponse }
   | { kind: "error"; query: string; message: string };
 type CatalogState =
-  { kind: "loading" } | { kind: "ready"; catalog: Catalog } | { kind: "error" };
+  | { kind: "loading" }
+  | { kind: "ready"; catalog: Catalog }
+  | { kind: "error" };
 const examples = [
   "Make my writing sound like me",
   "Design a better landing page",
@@ -111,16 +114,17 @@ function sourceName(source: string) {
 
 function SkillRow({ skill }: { skill: Skill }) {
   const [expanded, setExpanded] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<"idle" | "done" | "error">("idle");
+  const detailsId = useId();
   async function copyPrompt() {
     try {
       await navigator.clipboard.writeText(
         `Inspect the ${skill.name} skill at ${skill.source.url}. Explain what it does, its requirements, and whether it fits my task before installing it. Keep the pinned revision ${skill.source.revision}.`,
       );
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2400);
+      setCopied("done");
+      setTimeout(() => setCopied("idle"), 2400);
     } catch {
-      setCopied(false);
+      setCopied("error");
     }
   }
   return (
@@ -137,6 +141,7 @@ function SkillRow({ skill }: { skill: Skill }) {
             <button
               onClick={() => setExpanded(!expanded)}
               aria-expanded={expanded}
+              aria-controls={detailsId}
             >
               {skillTitle(skill.name)}
             </button>
@@ -153,6 +158,17 @@ function SkillRow({ skill }: { skill: Skill }) {
           </span>
           {skill.license.identifier && <span>{skill.license.identifier}</span>}
         </div>
+      </div>
+      <button
+        className="row-toggle"
+        aria-label={`${expanded ? "Collapse" : "Explore"} ${skill.name}`}
+        aria-expanded={expanded}
+        aria-controls={detailsId}
+        onClick={() => setExpanded(!expanded)}
+      >
+        <CaretDown size={20} aria-hidden="true" />
+      </button>
+      <div className="skill-detail-region" id={detailsId} hidden={!expanded}>
         {expanded && (
           <div className="skill-details">
             <div>
@@ -189,8 +205,8 @@ function SkillRow({ skill }: { skill: Skill }) {
               </span>
               <div className="detail-actions">
                 <button className="text-button" onClick={copyPrompt}>
-                  {copied ? <Check size={16} /> : <Copy size={16} />}
-                  {copied ? "Prompt copied" : "Copy review prompt"}
+                  {copied === "done" ? <Check size={16} /> : <Copy size={16} />}
+                  {copied === "done" ? "Prompt copied" : "Copy review prompt"}
                 </button>
                 <a
                   href={skill.source.url}
@@ -201,18 +217,37 @@ function SkillRow({ skill }: { skill: Skill }) {
                 </a>
               </div>
             </div>
+            <p className="review-copy-status" role="status">
+              {copied === "error"
+                ? "Could not copy the prompt. Open the source to review this skill."
+                : copied === "done"
+                  ? "Paste the review prompt into your agent."
+                  : ""}
+            </p>
           </div>
         )}
       </div>
-      <button
-        className="row-toggle"
-        aria-label={`${expanded ? "Collapse" : "Explore"} ${skill.name}`}
-        aria-expanded={expanded}
-        onClick={() => setExpanded(!expanded)}
-      >
-        {expanded ? <X size={18} /> : <ArrowUpRight size={20} />}
-      </button>
     </article>
+  );
+}
+
+function CatalogSkeleton({ label }: { label: string }) {
+  return (
+    <div className="catalog-loading">
+      <p className="loading-label">{label}</p>
+      <div className="skeleton-list" aria-hidden="true">
+        {[0, 1, 2].map((row) => (
+          <div className="skeleton-row" key={row}>
+            <span className="skeleton-mark" />
+            <div className="skeleton-content">
+              <span className="skeleton-title" />
+              <span className="skeleton-line" />
+              <span className="skeleton-meta" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -376,8 +411,16 @@ export function Discovery() {
             >
               Building in public <ArrowUpRight size={13} />
             </a>
-            <a href="#install" className="nav-install">
-              Install AgentForge <ArrowDown size={14} />
+            <a
+              href="#install"
+              className="nav-install"
+              aria-label="Install AgentForge"
+            >
+              <span className="nav-install-full">Install AgentForge</span>
+              <span className="nav-install-short" aria-hidden="true">
+                Install
+              </span>
+              <ArrowDown size={14} />
             </a>
           </nav>
         </div>
@@ -414,15 +457,10 @@ export function Discovery() {
               className="primary search-button"
               type="submit"
               disabled={isLoading}
+              aria-label={isLoading ? "Finding skills" : "Find a skill"}
             >
-              {isLoading ? (
-                <span className="spinner" aria-hidden="true" />
-              ) : (
-                <>
-                  <span>Find a skill</span>
-                  <ArrowRight size={18} />
-                </>
-              )}
+              <span>{isLoading ? "Searching" : "Find a skill"}</span>
+              <ArrowRight size={18} aria-hidden="true" />
             </button>
           </form>
           <div className="try-queries">
@@ -433,7 +471,7 @@ export function Discovery() {
                 onClick={() => {
                   void runSearch(text);
                   results.current?.scrollIntoView({
-                    behavior: "smooth",
+                    behavior: "auto",
                     block: "start",
                   });
                 }}
@@ -532,14 +570,19 @@ export function Discovery() {
               ? "Finding relevant skills."
               : search.kind === "error"
                 ? search.message
-                : `${filtered.length} skills available in this view.`}
+                : search.kind === "idle" && catalog.kind === "loading"
+                  ? "Opening the skill catalog."
+                  : `${filtered.length} skills available in this view.`}
           </div>
+          {((search.kind === "idle" && catalog.kind === "ready") ||
+            search.kind === "success") && (
+            <p className="catalog-count" aria-hidden="true">
+              Showing {rows.length} of {filtered.length}{" "}
+              {search.kind === "success" ? "results" : "skills"}
+            </p>
+          )}
           {isLoading ? (
-            <div className="loading-state">
-              <span className="spinner" />
-              <h3>Looking for useful capabilities</h3>
-              <p>Matching your task to the catalog.</p>
-            </div>
+            <CatalogSkeleton label="Matching your task to useful capabilities…" />
           ) : search.kind === "error" ? (
             <div className="empty-state" role="alert">
               <h3>Search needs another moment.</h3>
@@ -552,10 +595,7 @@ export function Discovery() {
               </button>
             </div>
           ) : catalog.kind === "loading" && search.kind === "idle" ? (
-            <div className="loading-state">
-              <span className="spinner" />
-              <p>Opening the skill catalog.</p>
-            </div>
+            <CatalogSkeleton label="Opening the skill catalog…" />
           ) : catalog.kind === "error" && search.kind === "idle" ? (
             <div className="empty-state">
               <h3>The catalog is taking a moment.</h3>
@@ -593,14 +633,16 @@ export function Discovery() {
               ))}
             </div>
           )}
-          {filtered.length > visible && !isLoading && (
-            <button
-              className="show-more"
-              onClick={() => setVisible(visible + 8)}
-            >
-              Explore more skills <Plus size={16} />
-            </button>
-          )}
+          {filtered.length > visible &&
+            !isLoading &&
+            search.kind !== "error" && (
+              <button
+                className="show-more"
+                onClick={() => setVisible(visible + 8)}
+              >
+                Explore more skills <Plus size={16} />
+              </button>
+            )}
           {search.kind === "success" &&
             search.response.meta.retrieval_mode === "lexical_only" && (
               <p className="mode-note">
@@ -630,8 +672,7 @@ export function Discovery() {
                 <span>One skill. More possibilities.</span>
               </div>
               <h2>
-                Let the right skill
-                <br />
+                Let the right skill <br className="desktop-break" />
                 find its way into the work.
               </h2>
               <p>
@@ -679,13 +720,15 @@ export function Discovery() {
                 {copied === "done"
                   ? "Setup prompt copied"
                   : copied === "error"
-                    ? "Copy unavailable — download the skill"
+                    ? "Try copying again"
                     : "Copy setup prompt"}
               </button>
               <p className="copy-status" aria-live="polite">
                 {copied === "done"
                   ? "Paste it into your agent to inspect and install."
-                  : "You choose what gets installed. Your files stay yours."}
+                  : copied === "error"
+                    ? "Clipboard access was unavailable. Try again or use Download the skill."
+                    : "You choose what gets installed. Your files stay yours."}
               </p>
             </div>
           </div>
@@ -727,6 +770,7 @@ export function Discovery() {
           <h2
             ref={statement}
             className={revealed ? "statement revealed" : "statement"}
+            aria-label="You bring the goal. Your agent finds the know how."
           >
             {"You bring the goal. Your agent finds the know how."
               .split(" ")
@@ -778,8 +822,8 @@ export function Discovery() {
           </a>
         </div>
         <p className="copyright">
-          © {new Date().getFullYear()} AgentForge. Platform code and design: all
-          rights reserved.
+          © {new Date().getFullYear()} AgentForge. Platform code and design:
+          all rights reserved.
         </p>
       </footer>
     </>
