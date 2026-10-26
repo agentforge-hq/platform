@@ -1,0 +1,3 @@
+pixeltable[serve]==0.7.20
+fastembed==0.9.1
+PyYAML==6.0.3

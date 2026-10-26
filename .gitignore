@@ -1,0 +1,17 @@
+.venv/
+node_modules/
+.next/
+.vercel/
+.env*
+!.env.example
+.audit/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.tsbuildinfo
+playwright-report/
+test-results/
+.vercel
+
+# Local command output and tools
+*.log

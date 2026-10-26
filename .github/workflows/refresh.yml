@@ -1,0 +1,30 @@
+name: Refresh skill index
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 8 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: catalog-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Collect pinned public skills
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m ingest.catalog collect
+      - name: Publish complete catalog refresh
+        env:
+          AGENTFORGE_REFRESH_URL: ${{ secrets.AGENTFORGE_REFRESH_URL }}
+          AGENTFORGE_REFRESH_SERVICE_KEY: ${{ secrets.AGENTFORGE_REFRESH_SERVICE_KEY }}
+          AGENTFORGE_INDEX_TOKEN: ${{ secrets.AGENTFORGE_INDEX_TOKEN }}
+        run: python -m ingest.catalog refresh-http

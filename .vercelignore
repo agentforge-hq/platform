@@ -1,0 +1,14 @@
+.git
+.audit
+.venv
+.env*
+node_modules
+.next
+app.py
+agentforge_backend
+ingest
+tests
+requirements.txt
+pyproject.toml
+pixeltable.toml
+uv.lock

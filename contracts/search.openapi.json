@@ -1,0 +1,486 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AgentForge discovery",
+    "version": "0.1.0",
+    "description": "Shared public search and browse contract for the website and native skill client."
+  },
+  "paths": {
+    "/api/v1/catalog": {
+      "get": {
+        "summary": "Catalog",
+        "operationId": "catalog_v1_catalog_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/search": {
+      "post": {
+        "summary": "Search",
+        "operationId": "search_v1_search_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CatalogResponse": {
+        "properties": {
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/Skill"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "skill_count": {
+            "type": "integer",
+            "title": "Skill Count"
+          },
+          "source_count": {
+            "type": "integer",
+            "title": "Source Count"
+          },
+          "categories": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Categories"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rows",
+          "skill_count",
+          "source_count",
+          "categories",
+          "updated_at"
+        ],
+        "title": "CatalogResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PublishRequest": {
+        "properties": {
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/VersionInput"
+            },
+            "type": "array",
+            "maxItems": 500,
+            "minItems": 1,
+            "title": "Rows"
+          },
+          "complete_repositories": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "title": "Complete Repositories"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "rows"
+        ],
+        "title": "PublishRequest"
+      },
+      "SearchMeta": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "matches",
+              "no_match"
+            ],
+            "title": "Status"
+          },
+          "retrieval_mode": {
+            "type": "string",
+            "enum": [
+              "hybrid",
+              "lexical_only"
+            ],
+            "title": "Retrieval Mode"
+          },
+          "catalog_revision": {
+            "type": "string",
+            "title": "Catalog Revision"
+          },
+          "ranking_version": {
+            "type": "string",
+            "title": "Ranking Version",
+            "default": "hybrid-v1"
+          },
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "retrieval_mode",
+          "catalog_revision",
+          "request_id"
+        ],
+        "title": "SearchMeta"
+      },
+      "SearchRequest": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Query"
+          },
+          "harness": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "codex",
+                  "claude-code",
+                  "cursor",
+                  "gemini",
+                  "opencode",
+                  "devin",
+                  "portable"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Harness"
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "default": 5
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "title": "SearchRequest"
+      },
+      "SearchResponse": {
+        "properties": {
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/Skill"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/SearchMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rows",
+          "meta"
+        ],
+        "title": "SearchResponse"
+      },
+      "Skill": {
+        "properties": {
+          "skill_id": {
+            "type": "string",
+            "title": "Skill Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "capabilities": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Capabilities"
+          },
+          "example_prompts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Example Prompts"
+          },
+          "requirements": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Requirements"
+          },
+          "exclusions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Exclusions"
+          },
+          "compatibility": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Compatibility"
+          },
+          "license": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "License"
+          },
+          "source": {
+            "$ref": "#/components/schemas/Source"
+          },
+          "adoption_status": {
+            "type": "string",
+            "enum": [
+              "review_required",
+              "metadata_only",
+              "unavailable"
+            ],
+            "title": "Adoption Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "skill_id",
+          "name",
+          "summary",
+          "category",
+          "capabilities",
+          "example_prompts",
+          "requirements",
+          "exclusions",
+          "compatibility",
+          "license",
+          "source",
+          "adoption_status"
+        ],
+        "title": "Skill"
+      },
+      "Source": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "repository": {
+            "type": "string",
+            "title": "Repository"
+          },
+          "revision": {
+            "type": "string",
+            "title": "Revision"
+          },
+          "skill_path": {
+            "type": "string",
+            "title": "Skill Path"
+          },
+          "manifest_sha256": {
+            "type": "string",
+            "title": "Manifest Sha256"
+          },
+          "checked_at": {
+            "type": "string",
+            "title": "Checked At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "url",
+          "repository",
+          "revision",
+          "skill_path",
+          "manifest_sha256",
+          "checked_at"
+        ],
+        "title": "Source"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VersionInput": {
+        "properties": {
+          "version_id": {
+            "type": "string",
+            "title": "Version Id"
+          },
+          "skill_id": {
+            "type": "string",
+            "title": "Skill Id"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 1800,
+            "title": "Description"
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 128000,
+            "title": "Body"
+          },
+          "examples": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "title": "Examples"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/Skill"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "version_id",
+          "skill_id",
+          "name",
+          "description",
+          "body",
+          "examples",
+          "payload"
+        ],
+        "title": "VersionInput"
+      }
+    }
+  }
+}
