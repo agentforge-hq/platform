@@ -124,7 +124,9 @@ def collect(*, repositories: list[str], destination: Path) -> dict:
         paths = [path for path in paths if not any(part in {'tests', 'fixtures', 'testdata', 'node_modules'} for part in path.split('/'))]
         if repository in REPOSITORY_SKILL_ROOTS:
             paths = [path for path in paths if any(path.startswith(root) for root in REPOSITORY_SKILL_ROOTS[repository])]
-        tasks.extend((repository, commit, path, license_id) for path in paths[:100])
+        if len(paths) > 100:
+            raise ValueError(f'Source exceeds the 100-skill collection limit; refusing an incomplete refresh: {repository}')
+        tasks.extend((repository, commit, path, license_id) for path in paths)
     rows = []
     def one(task):
         repository, revision, path, license_id = task

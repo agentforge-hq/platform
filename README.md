@@ -4,6 +4,8 @@ Find useful agent skills from an ordinary task description. This repository
 contains the Pixeltable Cloud catalog, source collector, hybrid search service,
 and a single-page website with a shared public query endpoint.
 
+Live pilot: [agentforge-five-sandy.vercel.app](https://agentforge-five-sandy.vercel.app).
+
 The website and native client use `POST /api/v1/search`. The website also uses
 `GET /api/v1/catalog` for browsing. Vercel keeps the Cloud service credential on
 the server. The public gateway cannot forward arbitrary paths or ingest data.
@@ -69,6 +71,8 @@ The public search key alone cannot refresh the index. A source revision becomes
 active after its rows and embeddings succeed. Complete source checks can
 withdraw absent listings. Historical versions remain stored. A failed source
 collection preserves the current published catalog.
+Collection also refuses a source above the pilot's 100-skill repository limit,
+so an incomplete snapshot cannot withdraw listings omitted by that limit.
 
 ## Verify
 
