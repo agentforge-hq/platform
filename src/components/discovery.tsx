@@ -40,6 +40,8 @@ const examples = [
   "Design a better landing page",
   "Find the root cause of a bug",
 ];
+const [taglineLead, ...taglineVerse] = brandTaglineLines;
+const taglineLeadWords = taglineLead.split(" ");
 const categories = [
   "All skills",
   "Design",
@@ -430,17 +432,21 @@ export function Discovery() {
         <section className="hero container">
           <div className="hero-heading">
             <h1 aria-label={brandTagline}>
-              {brandTaglineLines.map((line, index) => (
-                <span
-                  className={
-                    index === 0 ? "hero-tagline-lead" : "hero-tagline-line"
-                  }
-                  key={line}
-                  aria-hidden="true"
-                >
-                  {line}{" "}
+              <span className="hero-tagline-lead" aria-hidden="true">
+                <span className="hero-subject">
+                  {taglineLeadWords.slice(0, 2).join(" ")}
+                </span>{" "}
+                <span className="hero-promise">
+                  {taglineLeadWords.slice(2).join(" ")}
                 </span>
-              ))}
+              </span>{" "}
+              <span className="hero-verse" aria-hidden="true">
+                {taglineVerse.map((line) => (
+                  <span className="hero-tagline-line" key={line}>
+                    {line}{" "}
+                  </span>
+                ))}
+              </span>
             </h1>
             <p>
               Describe what you’re trying to do. Discover useful skills,

@@ -195,28 +195,51 @@ nav a:hover {
   padding-bottom: 64px;
 }
 .hero-heading {
-  text-align: center;
+  text-align: left;
   margin: auto;
 }
 .hero h1 {
-  font-size: 24px;
-  line-height: 32px;
-  letter-spacing: -0.02em;
-  max-width: 880px;
-  margin: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 64px;
+  margin: 0;
 }
 .hero-tagline-lead {
   display: block;
-  font-size: 60px;
+}
+.hero-subject {
+  display: block;
+  font-size: 96px;
   line-height: 1;
   letter-spacing: -0.04em;
-  margin-bottom: 16px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.hero-promise {
+  display: block;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-top: 8px;
+}
+.hero-verse {
+  display: grid;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  padding-bottom: 4px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--muted);
 }
 .hero-tagline-line {
   display: block;
 }
 .hero-heading > p {
-  margin: 24px auto 40px;
+  margin: 32px 0;
   color: var(--muted);
   font-size: 18px;
   line-height: 28px;
@@ -227,8 +250,8 @@ nav a:hover {
   gap: 16px;
   align-items: center;
   padding: 12px 12px 12px 24px;
-  max-width: 880px;
-  margin: auto;
+  max-width: none;
+  margin: 0;
   background: white;
   border: 1px solid #cdd5c5;
   border-radius: 16px;
@@ -284,10 +307,10 @@ nav a:hover {
   min-width: 148px;
 }
 .try-queries {
-  max-width: 880px;
+  max-width: none;
   margin: 16px auto 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
@@ -316,7 +339,7 @@ nav a:hover {
 .source-line {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   margin: 32px auto 0;
   font-size: 12px;
@@ -1071,9 +1094,19 @@ nav a:hover {
   .try-queries {
     gap: 12px;
   }
-  .hero-tagline-lead {
-    font-size: 48px;
-    line-height: 1;
+  .hero h1 {
+    gap: 40px;
+  }
+  .hero-subject {
+    font-size: 72px;
+  }
+  .hero-promise {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  .hero-verse {
+    font-size: 18px;
+    line-height: 28px;
   }
   .install-panel {
     padding: 24px;
@@ -1124,15 +1157,20 @@ nav a:hover {
     padding-bottom: 48px;
   }
   .hero h1 {
-    font-size: 18px;
-    line-height: 28px;
-    letter-spacing: -0.015em;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
-  .hero-tagline-lead {
-    font-size: 36px;
-    line-height: 40px;
-    letter-spacing: -0.035em;
-    margin-bottom: 12px;
+  .hero-subject {
+    font-size: 60px;
+  }
+  .hero-promise {
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .hero-verse {
+    gap: 4px;
+    padding-top: 16px;
+    padding-bottom: 0;
   }
   .desktop-break {
     display: none;

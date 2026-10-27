@@ -15,9 +15,11 @@ Search is the primary action. Installation is a secondary in-page destination.
 
 Hero: One Skill to rule them all, One Skill to find them, One Skill to bring
 them all and in the harness bind them.
-The full founder-supplied tagline appears in the first viewport, with its first
-clause at display size and the remaining clauses below it. `src/lib/brand.ts`
-owns this copy for the page heading and social metadata.
+The full founder-supplied tagline appears in the first viewport. The hero uses
+an editorial split: a cobalt "One Skill" at display size with its promise below,
+and the remaining verse alongside a fine rule. The functional description and
+search align with that composition. On small screens, the two parts stack.
+`src/lib/brand.ts` owns this copy for the page heading and social metadata.
 Subhead: Describe what you're trying to do. Discover useful skills, understand
 what they make possible, and bring them into your agent.
 Proof: real source names and live catalog counts only.
@@ -35,7 +37,8 @@ engineering, and research. Install AgentForge to search from your harness.
 
 Geist Sans, with Geist Mono for commands only. Ink #202820, paper #f7f8f2,
 muted ink #586356, cobalt #314be8, line #dfe4d9. Body 16/24, supporting 14/20,
-heading 60 with compact leading on desktop and 36/40 on small screens. Spacing
+hero subject 96/96 on desktop and 60/60 on small screens; promise 48/48 and
+30/36; supporting verse 20/28 and 18/28. Spacing
 uses 4, 8, 12, 16, 24, 32, 48, 64, 80, and 96 pixels. Search radius 16 pixels.
 Buttons radius 8 pixels. Catalog rows use separators and visible focus states.
 
