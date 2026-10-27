@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
+import { brandTagline, brandTaglineLines } from "@/lib/brand";
 import {
   ArrowDown,
   ArrowRight,
@@ -428,10 +429,18 @@ export function Discovery() {
       <main id="main">
         <section className="hero container">
           <div className="hero-heading">
-            <h1>
-              Find the skill you didn’t
-              <br className="desktop-break" /> know to ask for
-              <span className="blue-period">.</span>
+            <h1 aria-label={brandTagline}>
+              {brandTaglineLines.map((line, index) => (
+                <span
+                  className={
+                    index === 0 ? "hero-tagline-lead" : "hero-tagline-line"
+                  }
+                  key={line}
+                  aria-hidden="true"
+                >
+                  {line}{" "}
+                </span>
+              ))}
             </h1>
             <p>
               Describe what you’re trying to do. Discover useful skills,

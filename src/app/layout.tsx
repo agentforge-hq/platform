@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { brandPromise, brandTagline } from "@/lib/brand";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AgentForge | Find the skill you didn’t know to ask for",
+  title: `AgentForge | ${brandPromise}`,
   description:
     "Describe your task to discover agent skills for writing, design, engineering, and research. Bring the right capabilities into your agent.",
   openGraph: {
-    title: "AgentForge",
-    description: "Your goal. The right skill. A new possibility.",
+    title: `AgentForge | ${brandPromise}`,
+    description: brandTagline,
     type: "website",
   },
 };

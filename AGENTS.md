@@ -18,3 +18,9 @@ After implementation changes, run `npm run check`, `npm test`, `npm run build`,
 and `python -m pytest -q`. Include the populated-catalog regression when changing
 publication or retrieval. Verify the actual HTTP route and browser flow before
 claiming a deployment works. No paid add-ons or plan upgrades without approval.
+
+## Product identity
+
+| Rule | Shared owner |
+| --- | --- |
+| Preserve the founder's tagline when changing layout or metadata. | `src/lib/brand.ts`; the hero and social metadata import the same copy. |

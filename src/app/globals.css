@@ -199,14 +199,21 @@ nav a:hover {
   margin: auto;
 }
 .hero h1 {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.02em;
+  max-width: 880px;
+  margin: auto;
+}
+.hero-tagline-lead {
+  display: block;
   font-size: 60px;
   line-height: 1;
   letter-spacing: -0.04em;
-  max-width: 680px;
-  margin: auto;
+  margin-bottom: 16px;
 }
-.blue-period {
-  color: var(--accent);
+.hero-tagline-line {
+  display: block;
 }
 .hero-heading > p {
   margin: 24px auto 40px;
@@ -1064,7 +1071,7 @@ nav a:hover {
   .try-queries {
     gap: 12px;
   }
-  .hero h1 {
+  .hero-tagline-lead {
     font-size: 48px;
     line-height: 1;
   }
@@ -1117,9 +1124,15 @@ nav a:hover {
     padding-bottom: 48px;
   }
   .hero h1 {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.015em;
+  }
+  .hero-tagline-lead {
     font-size: 36px;
     line-height: 40px;
     letter-spacing: -0.035em;
+    margin-bottom: 12px;
   }
   .desktop-break {
     display: none;

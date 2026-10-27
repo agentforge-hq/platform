@@ -13,7 +13,11 @@ One page: navigation, outcome headline, large search field, example prompts,
 category shortcuts, actual catalog entries, installation, process, FAQ, footer.
 Search is the primary action. Installation is a secondary in-page destination.
 
-Hero: Find the skill you didn't know to ask for.
+Hero: One Skill to rule them all, One Skill to find them, One Skill to bring
+them all and in the harness bind them.
+The full founder-supplied tagline appears in the first viewport, with its first
+clause at display size and the remaining clauses below it. `src/lib/brand.ts`
+owns this copy for the page heading and social metadata.
 Subhead: Describe what you're trying to do. Discover useful skills, understand
 what they make possible, and bring them into your agent.
 Proof: real source names and live catalog counts only.
@@ -23,7 +27,7 @@ the same search from a harness. Process: describe a task, choose a skill, bring
 it into the work. FAQ covers automatic discovery, sources, compatibility,
 pricing, privacy, and how adoption works.
 
-Index the public page once live. Title: AgentForge | Find your agent's next skill.
+Index the public page once live. Title: AgentForge | One Skill to rule them all.
 Description: Describe your task to discover agent skills for writing, design,
 engineering, and research. Install AgentForge to search from your harness.
 
