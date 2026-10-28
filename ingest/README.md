@@ -111,3 +111,17 @@ The existing refresh workflow uses the default source policy. Run
 `python -m ingest.catalog refresh-http --snapshot .audit/catalog-source.json` only
 with the private refresh URL and credentials configured. This is an operator
 write; collection and verification do not require it.
+
+## Identical package mirrors
+
+Directories in the same pinned upstream repository are one listing when their
+SKILL.md SHA-256 and complete relative-path/Git-blob file manifests match.
+The shortest directory path is canonical. Its discovery URLs retain the mirror,
+and the completion summary records the full alias mapping. Changed supporting
+files and distinct upstream repositories remain separate alternatives. Missing
+file manifests cannot establish an alias.
+
+A large revision refresh can take longer than five minutes on the existing
+half-CPU target. The private publisher allows up to 30 minutes; its workflow
+has a 35-minute cap. Current pointers remain active until new rows and embeddings
+succeed. These bounds do not change the public query timeout or hosting plan.

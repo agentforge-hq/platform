@@ -185,3 +185,34 @@ def test_fetch_retries_transient_limits_with_a_bounded_wait(monkeypatch):
     with pytest.raises(urllib.error.HTTPError):
         catalog.fetch('https://example.com')
     assert len(attempts) == 1 and waits == [2]
+
+
+def test_identical_package_mirrors_are_one_listing_but_file_changes_and_forks_survive():
+    from copy import deepcopy
+    from tests.test_publication import version
+    from tests.test_profiles import extract
+    from agentforge_backend.models import SourceFile
+
+    original = extract()
+    original.source.files = [SourceFile(path='SKILL.md', git_blob_sha1='b' * 40)]
+    original.source.discovered_via = ['https://github.com/example/skills']
+    canonical = version(original).model_dump()
+    mirror = deepcopy(canonical)
+    source = mirror['payload']['source']
+    source['skill_path'] = 'plugins/example/skills/specialist'
+    source['url'] = 'https://github.com/example/skills/tree/' + source['revision'] + '/' + source['skill_path']
+    mirror['skill_id'] = mirror['payload']['skill_id'] = 'example/skills/' + source['skill_path']
+    mirror['version_id'] = catalog.version_id_for(catalog.Skill.model_validate(mirror['payload']), mirror['body'])
+    result, aliases = catalog.canonical_packages([mirror, canonical])
+    assert len(result) == 1 and result[0]['skill_id'] == canonical['skill_id']
+    assert source['url'] in result[0]['payload']['source']['discovered_via']
+    assert aliases == [{'canonical': canonical['skill_id'], 'mirrors': [mirror['skill_id']]}]
+    assert result[0]['version_id'] != canonical['version_id']
+    changed = deepcopy(mirror)
+    changed['payload']['source']['files'][0]['git_blob_sha1'] = 'c' * 40
+    changed['version_id'] = catalog.version_id_for(catalog.Skill.model_validate(changed['payload']), changed['body'])
+    assert len(catalog.canonical_packages([canonical, changed])[0]) == 2
+    fork = deepcopy(mirror)
+    fork['payload']['source']['repository'] = 'another/skills'
+    fork['version_id'] = catalog.version_id_for(catalog.Skill.model_validate(fork['payload']), fork['body'])
+    assert len(catalog.canonical_packages([canonical, fork])[0]) == 2

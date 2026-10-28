@@ -206,6 +206,31 @@ def package_files(tree: list[dict], path: str, max_files: int) -> list[dict]:
     return sorted(files, key=lambda item: item['path'])
 
 
+def canonical_packages(rows: list[dict]) -> tuple[list[dict], list[dict]]:
+    groups: dict[tuple, list[dict]] = {}
+    for row in rows:
+        source = row['payload']['source']
+        files = tuple(sorted((item['path'], item['git_blob_sha1']) for item in source['files']))
+        key = (source['repository'], source['revision'], source['manifest_sha256'], files)
+        if not files:
+            key += (row['skill_id'],)
+        groups.setdefault(key, []).append(row)
+    canonical, aliases = [], []
+    for group in groups.values():
+        group.sort(key=lambda row: (len(PurePosixPath(row['payload']['source']['skill_path']).parts), row['skill_id']))
+        chosen = VersionInput.model_validate(group[0])
+        if len(group) > 1:
+            origins = set(chosen.payload.source.discovered_via)
+            for mirror in group[1:]:
+                origins.update(mirror['payload']['source']['discovered_via'])
+                origins.add(mirror['payload']['source']['url'])
+            chosen.payload.source.discovered_via = sorted(origins)[:20]
+            chosen.version_id = version_id_for(chosen.payload, chosen.body)
+            aliases.append({'canonical': chosen.skill_id, 'mirrors': [row['skill_id'] for row in group[1:]]})
+        canonical.append(chosen.model_dump())
+    return sorted(canonical, key=lambda row: row['skill_id']), sorted(aliases, key=lambda item: item['canonical'])
+
+
 def collect(*, repositories: list[str] | None = None, destination: Path, policy_path: Path = POLICY_PATH) -> dict:
     token = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN')
     if not token:
@@ -345,6 +370,7 @@ def collect(*, repositories: list[str] | None = None, destination: Path, policy_
     rows.sort(key=lambda row: row['skill_id'])
     if len({row['skill_id'] for row in rows}) != len(rows):
         raise ValueError('Duplicate canonical package identity')
+    rows, aliases = canonical_packages(rows)
     failed_sources = {error['source'] for error in errors}
     complete = [repo for repo in complete if repo not in failed_sources]
     counts = Counter(row['payload']['category'] for row in rows)
@@ -357,6 +383,7 @@ def collect(*, repositories: list[str] | None = None, destination: Path, policy_
             kinds[kind] += 1
     summary = {
         'skills': len(rows),
+        'identical_package_aliases': aliases,
         'repositories': len(entries),
         'complete_repositories': complete if not errors else [],
         'errors': errors,
@@ -433,7 +460,7 @@ def main() -> None:
                 'X-AgentForge-Index-Key': os.environ['AGENTFORGE_INDEX_TOKEN'],
             },
         )
-        with urllib.request.urlopen(req, timeout=300) as response:
+        with urllib.request.urlopen(req, timeout=1800) as response:
             result = json.load(response)
     print(json.dumps(result, indent=2))
 
