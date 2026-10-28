@@ -1,14 +1,15 @@
 :root {
-  --paper: #f7f8f2;
-  --white: #fff;
-  --ink: #202820;
-  --muted: #586356;
-  --line: #dfe4d9;
-  --accent: #314be8;
-  --blue-soft: #edf0ff;
-  --green: #254c37;
+  --paper: #f8f5ed;
+  --white: #fffdf8;
+  --ink: #243c31;
+  --muted: #586355;
+  --line: #dad6c7;
+  --accent: #244638;
+  --accent-hover: #183a2c;
+  --gold: #92713d;
+  --gold-soft: #e5d8b9;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --surface-hover: #eef1e7;
+  --surface-hover: #efede3;
   --control-height: 44px;
 }
 * {
@@ -28,8 +29,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
-  background: #ccd3ff;
-  color: #182370;
+  background: var(--gold-soft);
+  color: var(--ink);
 }
 button,
 input,
@@ -101,7 +102,7 @@ button {
   width: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c2cbbb;
+  background: #b9b69f;
   border: 3px solid var(--paper);
   border-radius: 8px;
 }
@@ -152,15 +153,16 @@ button {
   display: inline-flex;
   gap: 12px;
   align-items: center;
+  font-family: var(--font-literary), Georgia, serif;
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
 .brand svg {
   width: 32px;
   height: 32px;
-  color: var(--ink);
+  color: var(--accent);
 }
 nav {
   display: flex;
@@ -201,9 +203,10 @@ nav a:hover {
 .hero h1 {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  align-items: end;
+  align-items: center;
   gap: 64px;
   margin: 0;
+  font-family: var(--font-literary), Georgia, serif;
 }
 .hero-tagline-lead {
   display: block;
@@ -212,28 +215,43 @@ nav a:hover {
   display: block;
   font-size: 96px;
   line-height: 1;
-  letter-spacing: -0.04em;
-  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-weight: 500;
   color: var(--accent);
 }
 .hero-promise {
   display: block;
   font-size: 48px;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+  font-weight: 500;
   margin-top: 8px;
 }
 .hero-verse {
+  position: relative;
   display: grid;
   gap: 12px;
-  border-top: 1px solid var(--line);
-  padding-top: 24px;
-  padding-bottom: 4px;
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--muted);
+  border-top: 1px solid var(--gold-soft);
+  padding-top: 32px;
+  padding-bottom: 16px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+.verse-ornament {
+  position: absolute;
+  top: -16px;
+  left: 0;
+  display: flex;
+  padding-right: 16px;
+  background: var(--paper);
+  color: var(--gold);
+}
+.verse-ornament svg {
+  width: 32px;
+  height: 32px;
 }
 .hero-tagline-line {
   display: block;
@@ -252,8 +270,8 @@ nav a:hover {
   padding: 12px 12px 12px 24px;
   max-width: none;
   margin: 0;
-  background: white;
-  border: 1px solid #cdd5c5;
+  background: var(--white);
+  border: 1px solid #c8c5b3;
   border-radius: 16px;
   transition: border-color 0.3s var(--ease);
 }
@@ -297,8 +315,8 @@ nav a:hover {
   white-space: nowrap;
 }
 .primary:hover {
-  background: #2135c3;
-  border-color: #2135c3;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 .primary:disabled {
   opacity: 0.65;
@@ -790,7 +808,7 @@ nav a:hover {
 .install-section {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: #edf1e6;
+  background: #eeeee2;
   padding: 64px 0;
   scroll-margin-top: 0;
 }
@@ -800,19 +818,8 @@ nav a:hover {
   gap: 80px;
   align-items: center;
 }
-.install-mark {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: #4d6044;
-  margin-bottom: 24px;
-}
-.install-mark svg {
-  width: 24px;
-  height: 24px;
-}
 .install-copy h2 {
+  font-family: var(--font-literary), Georgia, serif;
   font-size: 36px;
   line-height: 40px;
   letter-spacing: -0.03em;
@@ -844,7 +851,7 @@ nav a:hover {
 }
 .install-panel {
   padding: 32px;
-  background: #fff;
+  background: var(--white);
   border: 1px solid #d6decb;
   border-radius: 16px;
 }
@@ -920,6 +927,8 @@ nav a:hover {
   border-top: 1px solid var(--line);
 }
 .statement {
+  font-family: var(--font-literary), Georgia, serif;
+  font-weight: 500;
   font-size: 48px;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -1038,6 +1047,7 @@ nav a:hover {
   margin: auto;
 }
 .legal h1 {
+  font-family: var(--font-literary), Georgia, serif;
   font-size: 48px;
   line-height: 1.1;
   margin: 64px 0 32px;
@@ -1105,7 +1115,7 @@ nav a:hover {
     line-height: 40px;
   }
   .hero-verse {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 28px;
   }
   .install-panel {
@@ -1168,8 +1178,8 @@ nav a:hover {
     line-height: 36px;
   }
   .hero-verse {
-    gap: 4px;
-    padding-top: 16px;
+    gap: 8px;
+    padding-top: 24px;
     padding-bottom: 0;
   }
   .desktop-break {

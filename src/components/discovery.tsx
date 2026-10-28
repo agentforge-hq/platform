@@ -98,13 +98,13 @@ const questions = [
 function Mark() {
   return (
     <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <rect x="1" y="1" width="38" height="38" rx="10" fill="currentColor" />
+      <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="20" cy="20" r="14.5" stroke="currentColor" strokeWidth="0.6" />
       <path
-        d="M10 28V17l10-7 10 7v11M10 20l10 7 10-7M20 10v17"
-        stroke="var(--paper)"
-        strokeWidth="2.4"
-        strokeLinejoin="round"
+        d="M10 17h20l-4 5h-4v5h5v2H13v-2h5v-5h-3l-5-5Z"
+        fill="currentColor"
       />
+      <path d="m20 8 2 3-2 3-2-3 2-3Z" fill="var(--gold)" />
     </svg>
   );
 }
@@ -441,6 +441,9 @@ export function Discovery() {
                 </span>
               </span>{" "}
               <span className="hero-verse" aria-hidden="true">
+                <span className="verse-ornament">
+                  <Mark />
+                </span>
                 {taglineVerse.map((line) => (
                   <span className="hero-tagline-line" key={line}>
                     {line}{" "}
@@ -682,10 +685,6 @@ export function Discovery() {
         <section className="install-section" id="install">
           <div className="container install-layout">
             <div className="install-copy">
-              <div className="install-mark">
-                <Mark />
-                <span>One skill. More possibilities.</span>
-              </div>
               <h2>
                 Let the right skill <br className="desktop-break" />
                 find its way into the work.
