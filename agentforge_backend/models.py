@@ -139,6 +139,6 @@ class CatalogResponse(BaseModel):
     categories: list[str]
     updated_at: str | None
     offset: int = 0
-    limit: int = 100
+    limit: int = 50
+    filtered_count: int | None = None
     next_offset: int | None = None
-

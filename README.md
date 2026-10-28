@@ -10,6 +10,26 @@ The website and native client use `POST /api/v1/search`. The website also uses
 `GET /api/v1/catalog` for browsing. Vercel keeps the Cloud service credential on
 the server. The public gateway cannot forward arbitrary paths or ingest data.
 
+## Discovery pilot
+
+Search returns a short list with quotes from pinned source instructions, extracted
+outputs and applicability, known tool/account requirements, and explicit unknown
+harness support. Optional request constraints describe tool names and setup/account
+preferences; the client never needs to upload an installed-skill inventory.
+The website initially shows three results, with details and source evidence on
+request. Browse filters and pages the canonical catalog before returning a page.
+
+Profiles retain bounded original author metadata and distinguish declarations
+from deterministic inferences. New immutable IDs cover the source revision,
+extracted profile, supporting-file hashes, and body. Refresh dates do not change
+the content identity. Registry discoveries resolve to the upstream GitHub
+directory; generated harness copies do not inflate coverage.
+
+The native discovery preview can prepare an exact selected result in external
+quarantine. Promotion binds the reviewed bytes, destination, harness and recovery
+state. It preserves an existing install and requires a separate deliberate apply.
+Neither provenance nor installation establishes safety, activation or task lift.
+
 ## Runtime
 
 - Next.js 16, React, TypeScript, and Zod serve the website and public gateway.
@@ -91,7 +111,12 @@ The website links the experimental discovery preview bundles and their source.
 This is an initial catalog, not an index of every skill. Search uses metadata
 keyword scoring plus semantic retrieval and reciprocal rank fusion. Keyword
 scoring currently reads the bounded pilot catalog; scale and relevance require
-further evaluation. Compatibility is unknown unless independently established.
+further evaluation. The initial profile-hybrid-v2 ranker weights semantic ranks
+at 1 and keyword ranks at 0.1, with a 0.62 semantic floor. These are development
+settings awaiting representative human-reviewed evaluation. Old and profiled
+embedding indexes coexist during the additive rollout for rollback.
+Compatibility is unknown unless declared or independently established; an
+author's claim is never presented as an independent test.
 A source checksum is provenance, not a security review. An installed skill's
 implicit invocation depends on its harness.
 
@@ -100,6 +125,10 @@ shared global quota or a billing guarantee. Search outages are explicit errors;
 semantic failures can yield labeled keyword-only results. Query bodies are not
 intentionally persisted by the application, but infrastructure processes its
 normal technical request logs.
+
+See [evaluation](evaluation/README.md) for the frozen candidate set and bounded
+retrieval/operating tools. Candidate scoring, fresh-session discovery, accepted
+activation, task improvement, and 48 elapsed hours are separate evidence gates.
 
 ## License
 

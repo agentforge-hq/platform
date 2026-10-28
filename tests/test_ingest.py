@@ -158,3 +158,30 @@ def test_snapshot_cannot_reuse_a_completion_summary_after_content_changes(monkey
     snapshot.write_text('[]')
     with pytest.raises(ValueError, match='same collection'):
         catalog.validated_snapshot(snapshot)
+
+
+def test_fetch_retries_transient_limits_with_a_bounded_wait(monkeypatch):
+    import io
+    from email.message import Message
+    import urllib.error
+    import ingest.catalog as catalog
+
+    headers = Message()
+    headers['Retry-After'] = '2'
+    attempts, waits = [], []
+
+    def request(*args, **kwargs):
+        attempts.append(1)
+        if len(attempts) == 1:
+            raise urllib.error.HTTPError('https://example.com', 429, 'limit', headers, None)
+        return io.BytesIO(b'ok')
+
+    monkeypatch.setattr(catalog.urllib.request, 'urlopen', request)
+    monkeypatch.setattr(catalog.time, 'sleep', waits.append)
+    assert catalog.fetch('https://example.com') == b'ok'
+    assert len(attempts) == 2 and waits == [2]
+    headers.replace_header('Retry-After', '90')
+    attempts.clear()
+    with pytest.raises(urllib.error.HTTPError):
+        catalog.fetch('https://example.com')
+    assert len(attempts) == 1 and waits == [2]

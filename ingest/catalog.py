@@ -10,6 +10,8 @@ import json
 import os
 import re
 import subprocess
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from collections import Counter
@@ -31,8 +33,19 @@ def fetch(url: str, *, token: str | None = None, limit: int = 2_000_000) -> byte
     if token:
         headers['Authorization'] = f'Bearer {token}'
     req = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(req, timeout=25) as response:
-        body = response.read(limit + 1)
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=25) as response:
+                body = response.read(limit + 1)
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code not in {429, 500, 502, 503, 504} or attempt == 2:
+                raise
+            retry_after = exc.headers.get('Retry-After', '')
+            delay = float(retry_after) if retry_after.isdigit() else 2**attempt
+            if delay > 30:
+                raise
+            time.sleep(delay)
     if len(body) > limit:
         raise ValueError('Source exceeds the configured size limit')
     return body

@@ -7,7 +7,7 @@ from typing import Any
 
 from agentforge_backend.models import CapabilityProfile, FieldEvidence, HarnessSupport
 
-EXTRACTOR_VERSION = 'sections-v1'
+EXTRACTOR_VERSION = 'sections-v2'
 SECTION_FIELDS = {
     'avoid_when': ('when not to use', 'do not use', 'dont use', 'exclusions', 'out of scope', 'not suitable'),
     'use_when': ('when to use', 'use when', 'use cases', 'usage scenarios', 'triggers', 'activation'),
@@ -202,7 +202,10 @@ def extract_profile(
         support_clauses.append((metadata['compatibility'], 'frontmatter.compatibility'))
     for field, value, location in sections:
         optional = bool(
-            re.search(r'(?i)\b(?:not required|optional|no credentials|no dependencies|no prerequisites)\b', value)
+            re.search(
+                r'(?i)\b(?:not required|optional|no (?:credentials|dependencies|prerequisites|accounts?|authentication|api keys?))\b',
+                value,
+            )
         )
         if (
             field in {'use_when', 'avoid_when', 'outputs', 'requirements'}
@@ -224,10 +227,13 @@ def extract_profile(
                 if re.search(r'(?<![\w-])' + re.escape(tool) + r'(?![\w-])', value, re.I):
                     add('tools', tool, value, location)
         if field in {'credentials', 'requirements'} and not optional:
-            for credential in re.findall(
-                r'\b(?:[A-Z][A-Z0-9_]*_)?(?:API_KEY|ACCESS_KEY|TOKEN|SECRET|CREDENTIALS)\b', value
-            ):
+            credentials = re.findall(r'\b(?:[A-Z][A-Z0-9_]*_)?(?:API_KEY|ACCESS_KEY|TOKEN|SECRET|CREDENTIALS)\b', value)
+            for credential in credentials:
                 add('credentials', credential, value, location)
+            if not credentials and re.search(
+                r'(?i)\b(?:api[ -]?key|access token|credentials?|account|sign[ -]?in|log[ -]?in|authenticated)\b', value
+            ):
+                add('credentials', value, value, location)
     if not values['outputs']:
         for match in re.finditer(
             r'\b(?:create|produce|generate|deliver|export|write|build)s?\s+([^.!?;\n]{4,180})', description, re.I
@@ -269,24 +275,37 @@ def extract_profile(
 
     support = []
     for harness, names in HARNESS_NAMES.items():
-        clause = next(
-            (
-                (value, location)
-                for value, location in support_clauses
-                if any(name in value.casefold() for name in names)
-            ),
-            None,
-        )
-        if clause:
-            value, _ = clause
-            incompatible = any(
-                re.search(r'(?:not compatible with|does not support|unsupported on)\s+' + re.escape(name), value, re.I)
-                for name in names
+        clauses = [
+            (value, location)
+            for value, location in support_clauses
+            if any(re.search(r'(?<![\w-])' + re.escape(name) + r'(?![\w-])', value, re.I) for name in names)
+        ]
+        if clauses:
+            all_names = '|'.join(re.escape(name) for aliases in HARNESS_NAMES.values() for name in aliases)
+            negative_pattern = (
+                r'(?:not compatible with|does not support|unsupported on)\s+('
+                + r'(?:'
+                + all_names
+                + r')(?:\s*(?:,|and|or|/|&)\s*(?:'
+                + all_names
+                + r'))*)'
             )
+            negative = next(
+                (
+                    value
+                    for value, _ in clauses
+                    if any(
+                        any(re.search(r'(?<![\w-])' + re.escape(name) + r'(?![\w-])', match[1], re.I) for name in names)
+                        for match in re.finditer(negative_pattern, value, re.I)
+                    )
+                ),
+                None,
+            )
+            value = negative or clauses[0][0]
             support.append(
                 HarnessSupport(
                     harness=harness,
-                    status='incompatible' if incompatible else 'declared',
+                    status='incompatible' if negative else 'declared',
                     detail=clean(value, 480),
                     evidence_url=source_url,
                 )

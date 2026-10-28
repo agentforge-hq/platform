@@ -24,7 +24,7 @@ def test_profile_extractor_changes_get_distinct_immutable_versions():
     skill = extract()
     original = version_id_for(skill, 'source')
     assert '#' in original
-    skill.profile.extractor_version = 'sections-v2'
+    skill.profile.extractor_version += '-next'
     assert version_id_for(skill, 'source') != original
     assert version_id_for(skill, 'changed source') != version_id_for(skill, 'source')
 

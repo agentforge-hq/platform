@@ -126,3 +126,28 @@ def test_optional_or_negative_setup_statements_do_not_become_requirements():
     )
     assert skill.profile.tools == [] and skill.requirements == []
     assert skill.profile.credentials == ['REPORT_API_KEY']
+
+
+def test_natural_language_credentials_are_filtered_and_optional_accounts_are_not():
+    from agentforge_backend.models import SearchConstraints, SearchRequest
+    from agentforge_backend.retrieval import eligible
+
+    skill = extract(body='## Credentials\nA GitHub account and personal access token are required.\n')
+    assert skill.profile.credentials == ['A GitHub account and personal access token are required.']
+    assert not eligible(
+        skill, SearchRequest(query='research reports', constraints=SearchConstraints(allow_credentials=False))
+    )
+    assert not extract(body='## Credentials\nNo account is required.\n').profile.credentials
+
+
+def test_negative_harness_lists_apply_to_each_named_harness_and_override_earlier_support():
+    skill = extract(body='## Compatibility\nSupports Codex.\nNot compatible with Cursor or Codex.\n')
+    assert {item.harness: item.status for item in skill.harness_support} == {
+        'codex': 'incompatible',
+        'cursor': 'incompatible',
+    }
+    mixed = extract(body='## Compatibility\nNot compatible with Cursor but compatible with Codex.\n')
+    assert {item.harness: item.status for item in mixed.harness_support} == {
+        'codex': 'declared',
+        'cursor': 'incompatible',
+    }

@@ -1483,3 +1483,107 @@ nav a:hover {
     font-size: 16px;
   }
 }
+
+.match-explanation {
+  margin-top: 12px;
+  max-width: 75ch;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--ink);
+}
+.match-explanation strong {
+  font-weight: 600;
+  margin-right: 4px;
+}
+.profile-list {
+  margin: 0 0 16px;
+  padding-left: 20px;
+  color: var(--muted);
+}
+.skill-details h4:not(:first-child) {
+  margin-top: 24px;
+}
+.source-evidence {
+  grid-column: 1 / -1;
+  font-size: 14px;
+}
+.source-evidence summary {
+  cursor: pointer;
+  min-height: var(--control-height);
+  padding: 12px 0;
+}
+.source-evidence p {
+  max-width: 75ch;
+  margin: 16px 0;
+}
+.source-evidence p > span {
+  display: block;
+  font-size: 12px;
+}
+.source-evidence q {
+  display: block;
+  color: var(--ink);
+  margin: 4px 0;
+}
+.source-evidence a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  min-height: var(--control-height);
+}
+.search-preferences {
+  border-top: 1px solid var(--line);
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+.search-preferences summary {
+  display: list-item;
+  cursor: pointer;
+  padding: 12px 0;
+  min-height: var(--control-height);
+  color: var(--muted);
+}
+.preference-fields {
+  display: grid;
+  gap: 16px;
+  padding: 16px 0 24px;
+  max-width: 680px;
+}
+.preference-fields label > span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin: 4px 0 8px;
+}
+.preference-fields input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  min-height: var(--control-height);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+  padding: 8px 12px;
+  font-size: 16px;
+}
+.preference-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--control-height);
+}
+.preference-check input {
+  accent-color: var(--accent);
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+.preference-fields > p {
+  color: var(--muted);
+  font-size: 12px;
+}
+.preference-fields .text-button {
+  justify-content: flex-start;
+}
