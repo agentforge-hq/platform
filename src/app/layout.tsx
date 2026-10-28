@@ -13,10 +13,12 @@ const literarySerif = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lordoftheskill.com"),
   title: `AgentForge | ${brandPromise}`,
   description:
     "Describe your task to discover agent skills for writing, design, engineering, and research. Bring the right capabilities into your agent.",
   openGraph: {
+    url: "https://lordoftheskill.com",
     title: `AgentForge | ${brandPromise}`,
     description: brandTagline,
     type: "website",

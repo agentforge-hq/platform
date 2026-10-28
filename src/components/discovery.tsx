@@ -524,6 +524,10 @@ export function Discovery() {
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     void runSearch(query);
+    if (query.trim()) {
+      results.current?.scrollIntoView({ behavior: "auto", block: "start" });
+      results.current?.focus({ preventScroll: true });
+    }
   }
   function resetSearch() {
     abort.current?.abort();
@@ -687,6 +691,7 @@ export function Discovery() {
           id="catalog"
           ref={results}
           aria-busy={isLoading}
+          tabIndex={-1}
         >
           <div className="section-heading">
             <div>
