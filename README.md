@@ -42,6 +42,29 @@ Neither provenance nor installation establishes safety, activation or task lift.
   The bounded source policy uses direct repositories and registry discovery,
   excluding generated harness copies and fixtures. See [source collection](ingest/README.md).
 
+### Pixeltable query routes
+
+The Cloud `app` service registers three native `@pxt.query` routes with
+`FastAPIRouter.add_query_route()`. Pixeltable records their table associations:
+
+| Route | Table | Result |
+| --- | --- | --- |
+| `GET /queries/sources` | `sources` | Published version pointers and source check dates. |
+| `POST /queries/versions` | `skill_versions` | Payloads for the supplied `version_ids`, capped at 50 rows. |
+| `POST /queries/semantic` | `skill_versions` | Up to 50 vector candidates within supplied `version_ids` and `skill_ids`. |
+
+These routes require the Cloud service credential. They are available under
+the service's `/app` endpoint; Vercel exposes only the composed search and browse
+routes. Query POST bodies share the 8 KiB request limit, so version lookups should
+use small batches. Semantic queries accept `query`, `version_ids`, and `skill_ids`;
+they return raw scores before the public search's relevance floor and rank fusion.
+An explicitly requested immutable version may be historical.
+
+The registered routes and public handlers share the same query builders in
+`app.py`. The public search handler also applies eligibility constraints,
+keyword scoring, rank fusion, and source explanations. Its custom FastAPI routes
+are recorded separately in the service specification.
+
 ## Run locally
 
 Use Node.js 24 and Python 3.11. Install `requirements.txt` in a virtual environment,

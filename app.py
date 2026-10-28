@@ -7,10 +7,11 @@ import hmac
 import os
 import logging
 import uuid
+from typing import Any
 
 import numpy as np
 import pixeltable as pxt
-from fastapi import FastAPI, HTTPException, Query, Request
+from fastapi import APIRouter, FastAPI, HTTPException, Query, Request
 from fastapi.responses import JSONResponse
 from pixeltable.serving import FastAPIRouter
 
@@ -84,7 +85,44 @@ class Versions(TableModel, name='skill_versions'):
     ]
 
 
-api = FastAPIRouter(name='agentforge')
+def source_snapshot_query(sources: Any) -> pxt.Query:
+    return sources.select(sources.skill_id, sources.published_version, sources.checked_at)
+
+
+def version_payload_query(versions: Any, version_ids: Any) -> pxt.Query:
+    return versions.where(versions.version_id.isin(version_ids)).select(versions.version_id, versions.payload)
+
+
+def semantic_candidates_query(versions: Any, query: Any, version_ids: Any, skill_ids: Any) -> pxt.Query:
+    similarity = versions.profiled_text.similarity(string=query)
+    return (
+        versions.where(versions.version_id.isin(version_ids) & versions.skill_id.isin(skill_ids))
+        .select(versions.skill_id, score=similarity)
+        .order_by(similarity, asc=False)
+        .limit(50)
+    )
+
+
+@pxt.query
+def read_source_snapshot() -> pxt.Query:
+    return source_snapshot_query(Sources)
+
+
+@pxt.query
+def read_version_payloads(version_ids: list[str]) -> pxt.Query:
+    return version_payload_query(Versions, version_ids).limit(50)
+
+
+@pxt.query
+def read_semantic_candidates(query: str, version_ids: list[str], skill_ids: list[str]) -> pxt.Query:
+    return semantic_candidates_query(Versions, query, version_ids, skill_ids)
+
+
+queries = FastAPIRouter(name='queries')
+queries.add_query_route(path='/queries/sources', query=read_source_snapshot, method='get')
+queries.add_query_route(path='/queries/versions', query=read_version_payloads)
+queries.add_query_route(path='/queries/semantic', query=read_semantic_candidates)
+api = APIRouter()
 application = FastAPI(title='AgentForge discovery', version='0.1.0')
 
 
@@ -122,22 +160,15 @@ async def bound_requests(request: Request, call_next):
 
 
 def published_versions() -> list[str]:
-    sources = Sources.table
-    return [row['published_version'] for row in sources.select(sources.published_version).collect()]
+    return [row['published_version'] for row in source_snapshot_query(Sources.table).collect()]
 
 
 def current_rows(version_ids: list[str] | None = None) -> list[Skill]:
-    versions = Versions.table
     version_ids = published_versions() if version_ids is None else version_ids
     if not version_ids:
         return []
-    result = (
-        versions.where(versions.version_id.isin(version_ids)).select(versions.version_id, versions.payload).collect()
-    )
-    checked = {
-        row['published_version']: row['checked_at']
-        for row in Sources.table.select(Sources.table.published_version, Sources.table.checked_at).collect()
-    }
+    result = version_payload_query(Versions.table, version_ids).collect()
+    checked = {row['published_version']: row['checked_at'] for row in source_snapshot_query(Sources.table).collect()}
     rows = [(row['version_id'], Skill.model_validate(row['payload'])) for row in result]
     return [
         skill.model_copy(
@@ -208,13 +239,8 @@ def search(body: SearchRequest, request: Request) -> SearchResponse:
     mode = 'hybrid'
     if allowed and terms(body.query):
         try:
-            versions = Versions.table
-            similarity = versions.profiled_text.similarity(string=body.query)
             by_id = {skill.skill_id: skill for skill in allowed}
-            frame = versions.where(versions.version_id.isin(version_ids) & versions.skill_id.isin(list(by_id)))
-            result = (
-                frame.select(versions.skill_id, score=similarity).order_by(similarity, asc=False).limit(50).collect()
-            )
+            result = semantic_candidates_query(Versions.table, body.query, version_ids, list(by_id)).collect()
             semantic = [
                 (by_id[row['skill_id']], float(row['score'])) for row in result if row['score'] >= SEMANTIC_FLOOR
             ]
@@ -249,3 +275,4 @@ def refresh(body: PublishRequest, request: Request) -> dict[str, int]:
 
 
 application.include_router(api)
+application.include_router(queries)
