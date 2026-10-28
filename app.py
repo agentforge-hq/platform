@@ -239,6 +239,10 @@ def refresh(body: PublishRequest, request: Request) -> dict[str, int]:
     expected = os.environ.get('AGENTFORGE_INDEX_TOKEN', '')
     if not expected or not hmac.compare_digest(request.headers.get('x-agentforge-index-key', ''), expected):
         raise HTTPException(403, detail='Not authorized.')
+    if any(row.payload.profile.extractor_version == 'legacy' for row in body.rows):
+        raise HTTPException(
+            409, detail='This catalog requires source-backed profiles. Update the collector before refresh.'
+        )
     return publish_rows(
         sources=Sources.table, versions=Versions.table, rows=body.rows, complete_repositories=body.complete_repositories
     )
