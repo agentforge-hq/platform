@@ -4,7 +4,8 @@ Find useful agent skills from an ordinary task description. This repository
 contains the Pixeltable Cloud catalog, source collector, hybrid search service,
 and a single-page website with a shared public query endpoint.
 
-Live pilot: [agentforge-five-sandy.vercel.app](https://agentforge-five-sandy.vercel.app).
+Live pilot: [lordoftheskill.com](https://lordoftheskill.com).
+The original Vercel address remains available.
 
 The website and native client use `POST /api/v1/search`. The website also uses
 `GET /api/v1/catalog` for browsing. Vercel keeps the Cloud service credential on

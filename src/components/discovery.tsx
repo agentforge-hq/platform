@@ -65,7 +65,7 @@ const downloadTargets = [
   { label: "Windows · ARM64", file: "windows-arm64" },
 ];
 const downloadBase =
-  "https://github.com/agentforge-hq/agentforge/releases/download/discovery-preview-20261028.2";
+  "https://github.com/agentforge-hq/agentforge/releases/download/discovery-preview-20261028.3";
 const categoryLetters: Record<string, string> = {
   Design: "D",
   Engineering: "E",
