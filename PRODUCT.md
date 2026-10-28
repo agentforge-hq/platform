@@ -39,8 +39,11 @@ own SIL Open Font License.
 
 ## Evidence on Hand
 
-The company PRD is the approved build brief. No hosted catalog or user outcomes
-were measured before this implementation. Deployment targets are being confirmed.
+The company PRD defines the pilot. The existing MoS Vercel project serves
+lordoftheskill.com; the dedicated AgentForge database in the Pixeltable Pro
+organization owns the catalog and service. Source-backed discovery is deployed.
+Human-reviewed relevance, full harness reliability, task improvement and the
+48-hour operating gate remain open; the candidate evaluation is not a release claim.
 
 ## Accessibility & Inclusion
 
