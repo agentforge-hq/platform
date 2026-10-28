@@ -18,8 +18,8 @@ the server. The public gateway cannot forward arbitrary paths or ingest data.
 - FastEmbed runs BAAI's small English embedding model on the backend. No paid
   model API key or separate vector database is required.
 - Public GitHub manifests are read without executing downloaded scripts.
-  The initial source policy uses six repositories and selects Impeccable's
-  universal directory, excluding its generated harness copies and fixtures.
+  The bounded source policy uses direct repositories and registry discovery,
+  excluding generated harness copies and fixtures. See [source collection](ingest/README.md).
 
 ## Run locally
 
@@ -71,8 +71,9 @@ The public search key alone cannot refresh the index. A source revision becomes
 active after its rows and embeddings succeed. Complete source checks can
 withdraw absent listings. Historical versions remain stored. A failed source
 collection preserves the current published catalog.
-Collection also refuses a source above the pilot's 100-skill repository limit,
-so an incomplete snapshot cannot withdraw listings omitted by that limit.
+Collection refuses sources above their policy limits and preserves the last
+complete snapshot when any source fails. An explicit `--repo` uses a conservative
+100-directory limit; the reviewed default policy permits larger sources.
 
 ## Verify
 
