@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+import json
 import re
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, JsonValue, field_validator
 
 Harness = Literal['codex', 'claude-code', 'cursor', 'gemini', 'opencode', 'devin', 'portable']
 
@@ -108,6 +109,14 @@ class Skill(BaseModel):
     profile: CapabilityProfile = Field(default_factory=CapabilityProfile)
     harness_support: list[HarnessSupport] = Field(default_factory=list, max_length=12)
     fit: RecommendationFit | None = None
+    author_metadata: dict[str, JsonValue] = Field(default_factory=dict, max_length=64)
+
+    @field_validator('author_metadata')
+    @classmethod
+    def bounded_author_metadata(cls, value: dict[str, JsonValue]) -> dict[str, JsonValue]:
+        if len(json.dumps(value, ensure_ascii=False).encode('utf-8')) > 16384:
+            raise ValueError('Author metadata exceeds 16 KiB.')
+        return value
 
 
 class SearchMeta(BaseModel):
