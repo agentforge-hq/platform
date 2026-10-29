@@ -62,6 +62,64 @@ runtime package is needed by the tools.
 .venv/bin/python scripts/observe.py --help
 ```
 
+## Local human review
+
+`scripts/review.py` prepares a standalone worksheet containing the task text
+and full pinned catalog. It omits the candidate labels, approved identities,
+rationales, and retrieval outputs. Tasks have a deterministic shuffled order;
+the catalog is alphabetical. Filtering the catalog is a local text filter,
+not the production ranker. Source instructions render as text and never run.
+
+Prepare a worksheet from the exact immutable-row snapshot being evaluated:
+
+```sh
+mkdir -p .audit/relevance-review
+.venv/bin/python scripts/review.py prepare \
+  --catalog .audit/pilot-final-catalog.json \
+  --output .audit/relevance-review/worksheet.html
+.venv/bin/python scripts/review.py serve .audit/relevance-review/worksheet.html
+```
+
+Preparation uses the website's installed Geist font and embeds its license.
+Run `npm ci` first if the website dependencies are absent. The worksheet has
+no network dependencies. Serving binds only to `127.0.0.1`, prints its actual
+URL, and serves only that one file. It cannot read neighboring audit files.
+The HTML can also be opened directly without the local server.
+
+The reviewer can revise task wording, classify the task, choose useful skills,
+inspect pinned evidence, and record a reason. Browser storage retains drafts
+when available. **Save review file** exports a portable JSON draft, and **Load
+review file** restores one. Keep exports private because they include task text
+and reviewer notes. A draft may be incomplete; finalization refuses it.
+
+After personally completing every task, the named reviewer can record an
+attestation. Finalize into a new directory with the same corpus and snapshot:
+
+```sh
+.venv/bin/python scripts/review.py finalize \
+  --catalog .audit/pilot-final-catalog.json \
+  --annotations /absolute/path/to/exported-review.json \
+  --output .audit/relevance-review/reviewed-successor
+```
+
+Finalization validates all identities, timestamps, reasons, distinct task text,
+the 50/25/25 split, and ten relevant tasks per family. It binds the export to
+both input digests and retains the selected immutable version evidence. It
+refuses an existing output directory. The original prompts, labels, freeze,
+and measured failures remain unchanged.
+
+The successor records `attested_not_independently_verified`. This tool cannot
+authenticate a human or retroactively satisfy a pre-tuning review gate. A
+product owner must accept the review and freeze any successor before future
+ranking work. Existing evaluation reports continue to leave release gates
+unestablished. The worksheet alone does not improve the 37/50 candidate result.
+
+Use `prepare --demo` to test the interface with five separate synthetic tasks.
+An overlap check keeps those tasks distinct from the held-out corpus. The demo
+is labeled and has a different packet identity; its export cannot finalize the
+real corpus. Visual and implementation reviewers should inspect only this demo,
+not the actual held-out worksheet.
+
 A live run defaults to five cases. Requests contain only a synthetic task,
 harness identifier, and a result limit of three. The default four-second gap
 stays below the public gateway's 20-per-minute allowance. Retries share the
