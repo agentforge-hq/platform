@@ -51,6 +51,11 @@ use the same inputs and settings with and without discovery. Neither a
 retrieval result nor an installation proves task improvement or superiority
 to another discovery service.
 
+The [October 29 fresh-session diagnostic](harness-smoke.md) records a bounded
+development check of ordinary triggering, a trivial turn, transport recovery,
+and a decline follow-up. It preserves the incomplete task and excluded capture.
+It does not establish the full reliability or adoption gates.
+
 ## Commands
 
 Run from the platform checkout with its existing Python environment. No extra
