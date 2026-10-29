@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>AgentForge relevance review</title>
+  <!-- Geist font license: __FONT_LICENSE__ -->
+  <style>
+    @font-face{font-family:'Geist Sans';src:url(data:font/woff2;base64,__FONT_DATA__) format('woff2');font-weight:100 900;font-display:swap}
+    :root{--paper:#f8f5ed;--white:#fffdf8;--ink:#243c31;--muted:#586355;--line:#dad6c7;--accent:#244638;--hover:#efede3;--error:#8d3129}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 'Geist Sans',sans-serif}
+    ::selection{background:#e5d8b9}h1,h2,h3,p{margin:0;text-wrap:pretty}h1{font-size:24px;line-height:32px;font-weight:600;text-wrap:balance}h2{font-size:24px;line-height:32px;font-weight:600}h3{font-size:18px;line-height:28px;font-weight:600}
+    a{color:var(--accent);text-underline-offset:4px}button,input,select,textarea{font:inherit;color:inherit;accent-color:var(--accent)}button,a,input,select,textarea{touch-action:manipulation}button,input,select,textarea{border:1px solid var(--line);border-radius:8px;background:var(--white)}button{cursor:pointer;min-height:44px;padding:8px 12px;transition:background 150ms cubic-bezier(.2,.8,.2,1)}button:hover{background:var(--hover)}button:active{transform:translateY(1px)}button:disabled{cursor:default;opacity:.5}button.primary{background:var(--accent);color:var(--white);border-color:var(--accent)}button.primary:hover{background:#183a2c}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}input:not([type=checkbox]):not([type=radio]),select,textarea{padding:12px;width:100%}textarea{resize:vertical;line-height:24px;min-height:96px}input[type=checkbox],input[type=radio]{width:18px;height:18px;margin:0;flex:0 0 auto}
+    .skip{position:absolute;left:16px;top:-80px;z-index:2;background:var(--white);padding:12px}.skip:focus{top:8px}
+    header,.workspace,footer{max-width:1360px;margin:auto;padding:32px}header{display:grid;gap:24px}header p{max-width:75ch;color:var(--muted);margin-top:8px}.toolbar{display:flex;flex-wrap:wrap;gap:16px;align-items:end}.toolbar label{flex:1;min-width:200px;max-width:320px}.toolbar label span,.field-label{display:block;font-size:14px;margin-bottom:8px;font-weight:600}.toolbar button{flex:0 0 auto}
+    .progress-line{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:14px;color:var(--muted);margin-bottom:8px}progress{display:block;width:100%;height:8px;border:0;border-radius:8px;overflow:hidden;background:var(--line);accent-color:var(--accent)}progress::-webkit-progress-bar{background:var(--line)}progress::-webkit-progress-value{background:var(--accent)}
+    .workspace{display:grid;grid-template-columns:minmax(320px,400px) minmax(0,1fr);gap:48px;padding-top:8px}.task{align-self:start;position:sticky;top:24px;display:grid;gap:24px;max-height:calc(100dvh - 48px);overflow-y:auto;scrollbar-gutter:stable;padding-right:8px}.task-nav{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:8px}.task-nav button{padding:8px;align-self:end}.task label,.task fieldset{min-width:0}.task fieldset{border:0;padding:0;margin:0;display:grid;gap:4px}.task legend{padding:0;font-weight:600;font-size:14px;margin-bottom:8px}.choice{display:flex;align-items:center;gap:8px;min-height:44px;padding:4px 0}.choice small{display:block;color:var(--muted);font-size:14px;line-height:20px}.rationale{display:block}.selected{display:flex;flex-wrap:wrap;gap:8px}.selected button{font-size:14px;max-width:100%;overflow-wrap:anywhere;text-align:left}.task-actions{display:grid;gap:8px}.note{font-size:14px;color:var(--muted);line-height:24px}.error{color:var(--error)}#feedback{min-height:24px}#feedback:empty{position:absolute;width:1px;height:1px;min-height:0;margin:0;overflow:hidden;clip-path:inset(50%)}.catalog{min-width:0}.catalog-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}.filter{display:block;margin-bottom:16px}.filter input{margin-top:8px}.catalog article{padding:24px 0;border-top:1px solid var(--line)}.skill-title{display:flex;align-items:flex-start;gap:12px;cursor:pointer}.skill-title input{margin-top:4px}.skill-meta{font-size:12px;line-height:20px;color:var(--muted);overflow-wrap:anywhere;margin:8px 0 12px}.summary{max-width:75ch}.catalog details{margin-top:16px}.catalog summary{cursor:pointer;min-height:44px;padding:8px 0;color:var(--accent)}.evidence{padding:16px;background:var(--white);border:1px solid var(--line);border-radius:8px;display:grid;gap:16px;overflow-wrap:anywhere}.evidence h4{margin:0 0 4px;font-size:14px}.evidence p,.evidence li{font-size:14px;line-height:24px}.evidence ul{margin:0;padding-left:24px}.evidence pre{font:12px/20px ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;max-height:400px;overflow:auto;margin:0}.empty{padding:32px 0;color:var(--muted)}#more{margin-top:16px}footer{color:var(--muted);font-size:14px;display:grid;gap:16px;border-top:1px solid var(--line)}.attest{display:flex;align-items:flex-start;gap:12px;max-width:75ch}.attest input{margin-top:4px}[hidden]{display:none!important}
+    @media(max-width:760px){header,.workspace,footer{padding:24px 16px}.workspace{grid-template-columns:minmax(0,1fr);gap:40px}.task{position:static;max-height:none;overflow:visible;scrollbar-gutter:auto;padding-right:0}.toolbar label{max-width:none;flex-basis:100%}.toolbar button{flex:1}h1{font-size:24px;line-height:32px}.catalog-heading h2{font-size:18px;line-height:28px}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#task">Skip to the task</a>
+  <header>
+    <div><h1>AgentForge relevance review</h1><p>Decide what would actually help with each task. Expected answers and search rankings are hidden. The catalog below is pinned to one snapshot.</p><p id="demo" class="error" hidden>Synthetic interface demo. This is not the release evaluation.</p></div>
+    <div class="toolbar">
+      <label><span>Your name</span><input id="reviewer" autocomplete="name" maxlength="120" placeholder="Reviewer name"></label>
+      <button id="save" type="button">Save review file</button><button id="load" type="button">Load review file</button><input id="import" type="file" accept="application/json,.json" hidden>
+    </div>
+    <div><div class="progress-line"><span id="progress-text"></span><span id="snapshot"></span></div><progress id="progress" aria-label="Tasks marked reviewed" max="100" value="0"></progress></div>
+    <p id="feedback" role="status" aria-live="polite"></p>
+  </header>
+  <main class="workspace">
+    <section class="task" id="task" aria-labelledby="task-heading">
+      <div class="task-nav"><button id="previous" aria-label="Previous task">Prev</button><label><span class="field-label">Choose a task</span><select id="task-select"></select></label><button id="next" aria-label="Next task">Next</button></div>
+      <label><h2 id="task-heading">The task</h2><p class="note">Keep it natural. You can revise unclear wording.</p><textarea id="task-text" rows="5" aria-label="Task wording"></textarea></label>
+      <fieldset><legend>Would a skill help?</legend>
+        <label class="choice"><input type="radio" name="stratum" value="relevant"><span>Useful capability exists<small>Select every suitable identity you can justify.</small></span></label>
+        <label class="choice"><input type="radio" name="stratum" value="no_match"><span>No useful catalog match<small>The task is substantive, but these skills would not help.</small></span></label>
+        <label class="choice"><input type="radio" name="stratum" value="trivial"><span>No discovery needed<small>A trivial message or routine acknowledgment.</small></span></label>
+      </fieldset>
+      <label id="family-field"><span class="field-label">Task family</span><select id="domain"><option value="none">Choose a family</option><option value="writing">Writing</option><option value="design">Design</option><option value="engineering">Engineering</option><option value="research">Research</option><option value="operations">Operations</option></select></label>
+      <div><span class="field-label">Useful skills</span><div id="selected" class="selected"></div><a href="#catalog" class="note">Browse the pinned catalog</a></div>
+      <label class="rationale"><span class="field-label">Why is that the right judgment?</span><textarea id="rationale" rows="3" maxlength="2000" placeholder="Explain what helps, or why discovery would not help."></textarea></label>
+      <div class="task-actions"><button id="review" class="primary" type="button">Mark reviewed and continue</button><p class="note" id="task-status"></p></div>
+    </section>
+    <section class="catalog" id="catalog" aria-labelledby="catalog-heading">
+      <div class="catalog-heading"><h2 id="catalog-heading">Pinned catalog</h2><a href="#task" class="note">Back to task</a></div>
+      <p class="note">Alphabetical order, without search scores. Inspect the source before choosing a skill.</p>
+      <label class="filter"><span class="field-label">Filter by name, purpose or requirement</span><input id="filter" type="search" placeholder="For example, writing, debugging, or research"></label>
+      <p id="catalog-count" class="note" aria-live="polite"></p><div id="skills"></div><button id="more" type="button">Show 20 more skills</button>
+    </section>
+  </main>
+  <footer>
+    <p>Progress is saved in this browser when storage is available. Save a review file to keep a portable copy. No task, choice or note is sent to a server.</p>
+    <label class="attest"><input id="attestation" type="checkbox"><span>I personally reviewed every task in this file against this catalog. I understand that this statement is a reviewer attestation, not a completed product release gate.</span></label>
+    <p>A completed successor needs 50 useful tasks, 25 substantive tasks with no useful match, and 25 trivial turns. The useful tasks need ten examples in each family. The finalizer checks this balance and refuses incomplete files.</p>
+  </footer>
+  <script type="application/json" id="packet">__PACKET_DATA__</script>
+  <script>
+    'use strict';
+    const packet=JSON.parse(document.getElementById('packet').textContent);
+    const byId=new Map(packet.skills.map(skill=>[skill.skill_id,skill]));
+    const $=id=>document.getElementById(id);
+    const storageKey='agentforge-review-'+packet.packet_id;
+    const fresh=()=>({schema_version:1,packet_id:packet.packet_id,reviewer:'',attestation:false,annotations:packet.prompts.map(row=>({...row,stratum:'',domain:'none',approved_skill_ids:[],rationale:'',reviewed_at:null}))});
+    let state=fresh(),position=0,shown=20;
+    function feedback(text,error=false){$('feedback').textContent=text;$('feedback').classList.toggle('error',error)}
+    function validate(value){
+      const keys=['annotations','attestation','packet_id','reviewer','schema_version'];
+      if(!value||Object.keys(value).sort().join()!=keys.join()||value.schema_version!==1||value.packet_id!==packet.packet_id||typeof value.reviewer!=='string'||value.reviewer.length>120||typeof value.attestation!=='boolean'||!Array.isArray(value.annotations)||value.annotations.length!==packet.prompts.length)throw Error('This file does not match this worksheet.');
+      const rows=new Map();
+      for(const row of value.annotations){
+        if(!row||Object.keys(row).sort().join()!=='approved_skill_ids,domain,id,rationale,reviewed_at,stratum,text'||!packet.prompts.some(task=>task.id===row.id)||rows.has(row.id)||typeof row.text!=='string'||new TextEncoder().encode(row.text).length>2048||!['','relevant','no_match','trivial'].includes(row.stratum)||!['none','writing','design','engineering','research','operations'].includes(row.domain)||typeof row.rationale!=='string'||row.rationale.length>2000||!Array.isArray(row.approved_skill_ids)||new Set(row.approved_skill_ids).size!==row.approved_skill_ids.length||row.approved_skill_ids.some(id=>!byId.has(id))||!(row.reviewed_at===null||(typeof row.reviewed_at==='string'&&Number.isFinite(Date.parse(row.reviewed_at)))))throw Error('A task review is malformed. Load a file exported from this worksheet.');
+        rows.set(row.id,row);
+      }
+      return {...value,annotations:packet.prompts.map(task=>rows.get(task.id))};
+    }
+    try{const saved=localStorage.getItem(storageKey);if(saved)state=validate(JSON.parse(saved))}catch{feedback('Browser progress could not be restored. Load a saved review file or begin here.',true)}
+    function persist(){try{localStorage.setItem(storageKey,JSON.stringify(state))}catch{feedback('Browser storage is unavailable. Save a review file before leaving.',true)}}
+    function node(tag,text,className){const item=document.createElement(tag);if(text!==undefined)item.textContent=text;if(className)item.className=className;return item}
+    function progress(){
+      const done=state.annotations.filter(row=>row.reviewed_at).length;
+      $('progress').max=packet.prompts.length;$('progress').value=done;$('progress-text').textContent=done+' of '+packet.prompts.length+' tasks marked reviewed';
+      $('attestation').disabled=done!==packet.prompts.length;
+      $('task-status').textContent=state.annotations[position].reviewed_at?'Marked reviewed. Editing it will reopen the judgment.':'This task has not been marked reviewed.';
+    }
+    function update(){
+      const row=state.annotations[position];row.text=$('task-text').value;row.stratum=document.querySelector('input[name=stratum]:checked')?.value||'';row.domain=row.stratum==='relevant'?$('domain').value:'none';row.rationale=$('rationale').value;row.reviewed_at=null;
+      if(row.stratum!=='relevant')row.approved_skill_ids=[];
+      $('family-field').hidden=row.stratum!=='relevant';persist();progress();selection();
+    }
+    function selection(){
+      const row=state.annotations[position];$('selected').replaceChildren();
+      if(!row.approved_skill_ids.length)$('selected').append(node('p','No skills selected.','note'));
+      for(const id of row.approved_skill_ids){const button=node('button',byId.get(id).name+' · remove');button.type='button';button.addEventListener('click',()=>{row.approved_skill_ids=row.approved_skill_ids.filter(value=>value!==id);row.reviewed_at=null;persist();progress();selection();catalog()});$('selected').append(button)}
+    }
+    function displayTask(focus=false){
+      const row=state.annotations[position];$('task-select').value=String(position);$('task-text').value=row.text;$('domain').value=row.domain;$('rationale').value=row.rationale;
+      for(const radio of document.querySelectorAll('input[name=stratum]'))radio.checked=radio.value===row.stratum;
+      $('family-field').hidden=row.stratum!=='relevant';$('previous').disabled=position===0;$('next').disabled=position===state.annotations.length-1;$('filter').value='';shown=20;progress();selection();catalog();
+      if(focus)$('task-text').focus();
+    }
+    function detailList(parent,title,values){if(!values.length)return;const section=node('div');section.append(node('h4',title));const list=node('ul');for(const value of values)list.append(node('li',value));section.append(list);parent.append(section)}
+    function catalog(){
+      const query=$('filter').value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+      const matches=packet.skills.filter(skill=>{const text=[skill.name,skill.skill_id,skill.summary,...skill.requirements,...skill.profile.outputs,...skill.profile.use_when,...skill.profile.avoid_when,...skill.profile.tools].join(' ').toLocaleLowerCase();return query.every(term=>text.includes(term))});
+      $('skills').replaceChildren();$('catalog-count').textContent=matches.length+' matching skills in this '+packet.skills.length+' skill snapshot.';$('more').hidden=matches.length<=shown;
+      if(!matches.length)$('skills').append(node('p','No skills contain those terms. Try a broader phrase or clear the filter to inspect the full catalog.','empty'));
+      for(const skill of matches.slice(0,shown)){
+        const article=node('article'),label=node('label',undefined,'skill-title'),check=node('input');check.type='checkbox';check.checked=state.annotations[position].approved_skill_ids.includes(skill.skill_id);check.setAttribute('aria-label','Select '+skill.name+' from '+skill.skill_id);
+        check.addEventListener('change',()=>{update();const row=state.annotations[position];if(check.checked){row.stratum='relevant';row.approved_skill_ids.push(skill.skill_id);document.querySelector('input[value=relevant]').checked=true;$('family-field').hidden=false}else row.approved_skill_ids=row.approved_skill_ids.filter(id=>id!==skill.skill_id);row.reviewed_at=null;persist();progress();selection()});
+        label.append(check,node('h3',skill.name));article.append(label,node('p',skill.skill_id+' · '+skill.category,'skill-meta'),node('p',skill.summary,'summary'));
+        const details=node('details'),summary=node('summary','Inspect pinned source and requirements');details.append(summary);
+        details.addEventListener('toggle',()=>{if(!details.open||details.childElementCount>1)return;const evidence=node('div',undefined,'evidence');detailList(evidence,'Useful when',skill.profile.use_when);detailList(evidence,'Avoid when',[...skill.profile.avoid_when,...skill.exclusions]);detailList(evidence,'Outputs',skill.profile.outputs);detailList(evidence,'Requirements',[...skill.requirements,...skill.profile.tools,...skill.profile.credentials]);
+          evidence.append(node('p','License: '+(skill.license.identifier||'unresolved')+' · '+skill.adoption_status.replaceAll('_',' ')));
+          evidence.append(node('p','Harness support: '+(skill.harness_support.map(item=>item.harness+' '+item.status).join('; ')||'unknown')));
+          evidence.append(node('p','Revision '+skill.source.revision));
+          try{const url=new URL(skill.source.url);if(url.protocol==='https:'&&url.hostname==='github.com'&&!url.username&&!url.password){const link=node('a','Open pinned source on GitHub');link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';evidence.append(link)}}catch{}
+          const source=node('details');source.append(node('summary','Read SKILL.md as text'),node('pre',skill.body));evidence.append(source);details.append(evidence)});
+        article.append(details);$('skills').append(article);
+      }
+    }
+    $('reviewer').value=state.reviewer;$('attestation').checked=state.attestation;$('snapshot').textContent='Catalog '+packet.catalog_revision;$('demo').hidden=!packet.demo;
+    packet.prompts.forEach((row,index)=>{const option=node('option','Task '+(index+1)+' · '+row.id);option.value=String(index);$('task-select').append(option)});
+    $('reviewer').addEventListener('input',()=>{state.reviewer=$('reviewer').value;state.attestation=false;$('attestation').checked=false;persist()});
+    $('attestation').addEventListener('change',()=>{state.attestation=$('attestation').checked;persist()});
+    for(const id of ['task-text','domain','rationale'])$(id).addEventListener('input',update);
+    for(const radio of document.querySelectorAll('input[name=stratum]'))radio.addEventListener('change',()=>{update();catalog()});
+    $('task-select').addEventListener('change',()=>{position=Number($('task-select').value);displayTask(true)});
+    $('previous').addEventListener('click',()=>{position--;displayTask(true)});$('next').addEventListener('click',()=>{position++;displayTask(true)});
+    $('filter').addEventListener('input',()=>{shown=20;catalog()});$('more').addEventListener('click',()=>{shown+=20;catalog()});
+    $('review').addEventListener('click',()=>{const row=state.annotations[position];if(!row.text.trim()||new TextEncoder().encode(row.text).length>2048||!row.stratum||row.rationale.trim().length<5||(row.stratum==='relevant'&&(!row.approved_skill_ids.length||row.domain==='none'))){feedback('Add task text, a judgment and a reason. Useful tasks also need a family and at least one selected skill.',true);return}row.reviewed_at=new Date().toISOString();state.attestation=false;$('attestation').checked=false;persist();feedback('Task marked reviewed. Save a review file whenever you want a portable copy.');if(position<state.annotations.length-1)position++;displayTask(true)});
+    $('save').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)+'\n'],{type:'application/json'}),url=URL.createObjectURL(blob),link=node('a');link.href=url;link.download='agentforge-review-'+packet.packet_id.slice(0,12)+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);feedback('Review file saved. Incomplete drafts are allowed; finalization requires every task.')});
+    $('load').addEventListener('click',()=>$('import').click());$('import').addEventListener('change',async()=>{try{const file=$('import').files[0];if(!file)return;if(file.size>10000000)throw Error('Review files must be smaller than 10 MB.');const imported=validate(JSON.parse(await file.text()));state=imported;position=0;$('reviewer').value=state.reviewer;$('attestation').checked=state.attestation;persist();displayTask();feedback('Review file loaded.')}catch(error){feedback(error.message||'The review file could not be loaded.',true)}finally{$('import').value=''}});
+    displayTask();
+  </script>
+</body>
+</html>

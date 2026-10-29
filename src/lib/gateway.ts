@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from "node:crypto";
 import { z } from "zod";
 import {
+  catalogQuerySchema,
   catalogResponseSchema,
   searchRequestSchema,
   searchResponseSchema,
@@ -24,7 +25,10 @@ export function apiError(
   );
 }
 
-export async function readBody(request: Request): Promise<string | null> {
+export async function readBody(
+  request: Pick<Request, "body">,
+  byteLimit = MAX_BODY,
+): Promise<string | null> {
   if (!request.body) return "";
   const reader = request.body.getReader();
   const chunks: Uint8Array[] = [];
@@ -33,7 +37,7 @@ export async function readBody(request: Request): Promise<string | null> {
     const chunk = await reader.read();
     if (chunk.done) break;
     length += chunk.value.byteLength;
-    if (length > MAX_BODY) {
+    if (length > byteLimit) {
       await reader.cancel();
       return null;
     }
@@ -72,6 +76,7 @@ async function forward<T>(
   path: "/v1/search" | "/v1/catalog",
   schema: z.ZodType<T>,
   body?: unknown,
+  query?: URLSearchParams,
 ): Promise<Response> {
   const base = process.env.PIXELTABLE_SERVICE_URL;
   const key = process.env.PIXELTABLE_SERVICE_KEY;
@@ -82,25 +87,28 @@ async function forward<T>(
       "The catalog is not connected yet. Please try again shortly.",
     );
   try {
-    const response = await fetch(`${base.replace(/\/$/, "")}${path}`, {
-      method: body === undefined ? "GET" : "POST",
-      headers: {
-        "X-api-key": key,
-        ...(body === undefined ? {} : { "Content-Type": "application/json" }),
+    const response = await fetch(
+      `${base.replace(/\/$/, "")}${path}${query ? `?${query}` : ""}`,
+      {
+        method: body === undefined ? "GET" : "POST",
+        headers: {
+          "X-api-key": key,
+          ...(body === undefined ? {} : { "Content-Type": "application/json" }),
+        },
+        body: body === undefined ? undefined : JSON.stringify(body),
+        signal: AbortSignal.timeout(7_500),
+        cache: "no-store",
+        redirect: "error",
       },
-      body: body === undefined ? undefined : JSON.stringify(body),
-      signal: AbortSignal.timeout(12_000),
-      cache: "no-store",
-      redirect: "error",
-    });
+    );
     if (!response.ok)
       return apiError(
         response.status === 429 ? 429 : 503,
         "catalog_unavailable",
         "The catalog is temporarily unavailable. Please try again.",
       );
-    const raw = await response.text();
-    if (new TextEncoder().encode(raw).length > 1_048_576)
+    const raw = await readBody(response, 4_194_304);
+    if (raw === null)
       return apiError(
         502,
         "invalid_response",
@@ -173,6 +181,20 @@ export async function searchGateway(request: Request): Promise<Response> {
   }
   return forward("/v1/search", searchResponseSchema, parsed.data);
 }
-export async function catalogGateway(): Promise<Response> {
-  return forward("/v1/catalog", catalogResponseSchema);
+export async function catalogGateway(request?: Request): Promise<Response> {
+  const parameters = new URL(request?.url ?? "http://localhost/api/v1/catalog")
+    .searchParams;
+  if ([...parameters.keys()].some((key) => parameters.getAll(key).length > 1))
+    return apiError(422, "invalid_request", "Use each catalog filter once.");
+  const parsed = catalogQuerySchema.safeParse(Object.fromEntries(parameters));
+  if (!parsed.success)
+    return apiError(
+      422,
+      "invalid_request",
+      "Use supported catalog filters and page bounds.",
+    );
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(parsed.data))
+    query.set(key, String(value));
+  return forward("/v1/catalog", catalogResponseSchema, undefined, query);
 }

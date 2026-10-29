@@ -4,11 +4,32 @@ Find useful agent skills from an ordinary task description. This repository
 contains the Pixeltable Cloud catalog, source collector, hybrid search service,
 and a single-page website with a shared public query endpoint.
 
-Live pilot: [agentforge-five-sandy.vercel.app](https://agentforge-five-sandy.vercel.app).
+Live pilot: [lordoftheskill.com](https://lordoftheskill.com).
+The original Vercel address remains available.
 
 The website and native client use `POST /api/v1/search`. The website also uses
 `GET /api/v1/catalog` for browsing. Vercel keeps the Cloud service credential on
 the server. The public gateway cannot forward arbitrary paths or ingest data.
+
+## Discovery pilot
+
+Search returns a short list with quotes from pinned source instructions, extracted
+outputs and applicability, known tool/account requirements, and explicit unknown
+harness support. Optional request constraints describe tool names and setup/account
+preferences; the client never needs to upload an installed-skill inventory.
+The website initially shows three results, with details and source evidence on
+request. Browse filters and pages the canonical catalog before returning a page.
+
+Profiles retain bounded original author metadata and distinguish declarations
+from deterministic inferences. New immutable IDs cover the source revision,
+extracted profile, supporting-file hashes, and body. Refresh dates do not change
+the content identity. Registry discoveries resolve to the upstream GitHub
+directory; generated harness copies do not inflate coverage.
+
+The native discovery preview can prepare an exact selected result in external
+quarantine. Promotion binds the reviewed bytes, destination, harness and recovery
+state. It preserves an existing install and requires a separate deliberate apply.
+Neither provenance nor installation establishes safety, activation or task lift.
 
 ## Runtime
 
@@ -18,8 +39,31 @@ the server. The public gateway cannot forward arbitrary paths or ingest data.
 - FastEmbed runs BAAI's small English embedding model on the backend. No paid
   model API key or separate vector database is required.
 - Public GitHub manifests are read without executing downloaded scripts.
-  The initial source policy uses six repositories and selects Impeccable's
-  universal directory, excluding its generated harness copies and fixtures.
+  The bounded source policy uses direct repositories and registry discovery,
+  excluding generated harness copies and fixtures. See [source collection](ingest/README.md).
+
+### Pixeltable query routes
+
+The Cloud `app` service registers three native `@pxt.query` routes with
+`FastAPIRouter.add_query_route()`. Pixeltable records their table associations:
+
+| Route | Table | Result |
+| --- | --- | --- |
+| `GET /queries/sources` | `sources` | Published version pointers and source check dates. |
+| `POST /queries/versions` | `skill_versions` | Payloads for the supplied `version_ids`, capped at 50 rows. |
+| `POST /queries/semantic` | `skill_versions` | Up to 50 vector candidates within supplied `version_ids` and `skill_ids`. |
+
+These routes require the Cloud service credential. They are available under
+the service's `/app` endpoint; Vercel exposes only the composed search and browse
+routes. Query POST bodies share the 8 KiB request limit, so version lookups should
+use small batches. Semantic queries accept `query`, `version_ids`, and `skill_ids`;
+they return raw scores before the public search's relevance floor and rank fusion.
+An explicitly requested immutable version may be historical.
+
+The registered routes and public handlers share the same query builders in
+`app.py`. The public search handler also applies eligibility constraints,
+keyword scoring, rank fusion, and source explanations. Its custom FastAPI routes
+are recorded separately in the service specification.
 
 ## Run locally
 
@@ -71,8 +115,9 @@ The public search key alone cannot refresh the index. A source revision becomes
 active after its rows and embeddings succeed. Complete source checks can
 withdraw absent listings. Historical versions remain stored. A failed source
 collection preserves the current published catalog.
-Collection also refuses a source above the pilot's 100-skill repository limit,
-so an incomplete snapshot cannot withdraw listings omitted by that limit.
+Collection refuses sources above their policy limits and preserves the last
+complete snapshot when any source fails. An explicit `--repo` uses a conservative
+100-directory limit; the reviewed default policy permits larger sources.
 
 ## Verify
 
@@ -90,7 +135,12 @@ The website links the experimental discovery preview bundles and their source.
 This is an initial catalog, not an index of every skill. Search uses metadata
 keyword scoring plus semantic retrieval and reciprocal rank fusion. Keyword
 scoring currently reads the bounded pilot catalog; scale and relevance require
-further evaluation. Compatibility is unknown unless independently established.
+further evaluation. The initial profile-hybrid-v2 ranker weights semantic ranks
+at 1 and keyword ranks at 0.1, with a 0.62 semantic floor. These are development
+settings awaiting representative human-reviewed evaluation. Old and profiled
+embedding indexes coexist during the additive rollout for rollback.
+Compatibility is unknown unless declared or independently established; an
+author's claim is never presented as an independent test.
 A source checksum is provenance, not a security review. An installed skill's
 implicit invocation depends on its harness.
 
@@ -99,6 +149,10 @@ shared global quota or a billing guarantee. Search outages are explicit errors;
 semantic failures can yield labeled keyword-only results. Query bodies are not
 intentionally persisted by the application, but infrastructure processes its
 normal technical request logs.
+
+See [evaluation](evaluation/README.md) for the frozen candidate set and bounded
+retrieval/operating tools. Candidate scoring, fresh-session discovery, accepted
+activation, task improvement, and 48 elapsed hours are separate evidence gates.
 
 ## License
 

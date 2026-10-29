@@ -1,0 +1,419 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-29",
+  "status": "bounded_development_diagnostic",
+  "platform_revision": "1153cfce0ba3cb767c59ac07e1b50a03393c2a81",
+  "native_revision": "1211e82",
+  "release_gates_established": false,
+  "model_backend_attested": false,
+  "task_improvement_measured": false,
+  "driver_sha256": {
+    "probe.py": "439105e4508695ea7ac5ea068486d9b9f803e4910ae1a756140b0fbc21b7729a",
+    "fault_cases.py": "3c885d884e6743be82729d960b1a03acd8414268abce21f6b72bc948049389fa"
+  },
+  "development_prompts_sha256": "a74c4b596e932aef4911fc8cacbcc8a4ec0b912e8401cfd47027541d2cb0fb23",
+  "cases": [
+    {
+      "id": "ordinary-go-ci",
+      "scope": "ordinary_task_production_search",
+      "excluded_from_development_evidence": false,
+      "resolved_configuration": {
+        "cli_version": "codex-cli 0.165.0-alpha.1.2",
+        "model": "gpt-6.1-sol",
+        "modelProvider": "openai",
+        "reasoningEffort": "xhigh"
+      },
+      "model_provenance": "resolved_configuration_not_backend_attestation",
+      "ephemeral": true,
+      "persisted_path_recorded": false,
+      "skill_count": 55,
+      "enabled_skill_count": 54,
+      "agentforge_enabled": true,
+      "inventory_sha256": "f829731cd4b7394f17c04bc4c5edcd869d9330fcce45f7ed8210d1879d6c180b",
+      "recorded_instruction_source_count": 1,
+      "instruction_sources_sha256": "1441efeec15b81a6aa0b4b8371354ef8b5f2941812faf6903230b316b5366363",
+      "input_sha256": {
+        "metadata": "91d31172a82c4b6108a61ffaff4c527df90671315da310bac4a51360adfaf23c",
+        "events": "b8fd4282a604b9e561ab55554634975a7dda87b0bf1a3bd0e622acd8b04d3d9f"
+      },
+      "turns": [
+        {
+          "label": "initial",
+          "status": "timed_out",
+          "elapsed_seconds": 180.02,
+          "prompt_sha256": "bd284c8f4237fa87fe64ef778457efb1b135038087153f93c608d8e75bcb8576",
+          "summary_sha256": "e5c2571193c5fce4f77aa1720c3e1d2617740c369e1e702137862f4651d84eb1",
+          "observed_completion_statuses": [],
+          "command_count": 16,
+          "nonzero_exit_command_count": 3,
+          "message_count": 4,
+          "item_types": [
+            "agentMessage",
+            "commandExecution",
+            "fileChange",
+            "reasoning",
+            "userMessage",
+            "webSearch"
+          ],
+          "model_reroute_event_count": 0,
+          "total_network_request_count": null,
+          "native_search_command_observations": [
+            {
+              "exit_code": 0,
+              "valid_search_response": true,
+              "result_count": 3,
+              "status": "matches",
+              "catalog_revision": "2e1cd1b997b61fed",
+              "ranking_version": "profile-hybrid-v2"
+            }
+          ]
+        }
+      ],
+      "instrumented_search_http": null
+    },
+    {
+      "id": "trivial-disjoint",
+      "scope": "ordinary_trivial_turn",
+      "excluded_from_development_evidence": false,
+      "resolved_configuration": {
+        "cli_version": "codex-cli 0.165.0-alpha.1.2",
+        "model": "gpt-6.1-sol",
+        "modelProvider": "openai",
+        "reasoningEffort": "xhigh"
+      },
+      "model_provenance": "resolved_configuration_not_backend_attestation",
+      "ephemeral": true,
+      "persisted_path_recorded": false,
+      "skill_count": 55,
+      "enabled_skill_count": 54,
+      "agentforge_enabled": true,
+      "inventory_sha256": "f829731cd4b7394f17c04bc4c5edcd869d9330fcce45f7ed8210d1879d6c180b",
+      "recorded_instruction_source_count": 1,
+      "instruction_sources_sha256": "1441efeec15b81a6aa0b4b8371354ef8b5f2941812faf6903230b316b5366363",
+      "input_sha256": {
+        "metadata": "91d31172a82c4b6108a61ffaff4c527df90671315da310bac4a51360adfaf23c",
+        "events": "e59b38c536d3f372e9b0787ddbeae62638acf322ad1997e74a2a2ee861aa5a67"
+      },
+      "turns": [
+        {
+          "label": "initial",
+          "status": "completed",
+          "elapsed_seconds": 7.45,
+          "prompt_sha256": "53cb89af6981dfb6fa8bc67b290fde18f463c23f0def44c5a7a5a738108515e2",
+          "summary_sha256": "2e84b31a135542276823aa6a73f583d8d6bbf8974d79d55ad273c6c32abaa937",
+          "observed_completion_statuses": [
+            "completed"
+          ],
+          "command_count": 0,
+          "nonzero_exit_command_count": 0,
+          "message_count": 1,
+          "item_types": [
+            "agentMessage",
+            "reasoning",
+            "userMessage"
+          ],
+          "model_reroute_event_count": 0,
+          "total_network_request_count": null,
+          "native_search_command_observations": []
+        }
+      ],
+      "instrumented_search_http": null
+    },
+    {
+      "id": "fixture-outage",
+      "scope": "explicitly_primed_transport_fixture",
+      "excluded_from_development_evidence": false,
+      "resolved_configuration": {
+        "cli_version": "codex-cli 0.165.0-alpha.1.2",
+        "model": "gpt-6.1-sol",
+        "modelProvider": "openai",
+        "reasoningEffort": "xhigh"
+      },
+      "model_provenance": "resolved_configuration_not_backend_attestation",
+      "ephemeral": true,
+      "persisted_path_recorded": false,
+      "skill_count": 55,
+      "enabled_skill_count": 54,
+      "agentforge_enabled": true,
+      "inventory_sha256": "f829731cd4b7394f17c04bc4c5edcd869d9330fcce45f7ed8210d1879d6c180b",
+      "recorded_instruction_source_count": 2,
+      "instruction_sources_sha256": "c3bdef875f175a028d4ca478ad9583c9e110ca7a439f60fe9c6fa17e8aee6ada",
+      "input_sha256": {
+        "metadata": "2d7ede7a2e5c07ffe1c512ea88d228237310f8ab1b812488305d7a256f35d8e9",
+        "events": "300d0754b0aa28e67c9dc4331a5f9d68c70fcc89c5e78bd11208bd0fdeb83370",
+        "http_observations": "ab60c779a1e97068cdbd6bc736390cfb912cad1626ce8ea966b7c89e64795df8"
+      },
+      "turns": [
+        {
+          "label": "initial",
+          "status": "completed",
+          "elapsed_seconds": 91.01,
+          "prompt_sha256": "a99c5c893d13c920fc34b17d54d2b86cee82cd70d08468b1e2b1bc62d0740979",
+          "summary_sha256": "b0e065085c36e845999410e67d0944490b91d2178fe9ee3937610bc2f9be54b0",
+          "observed_completion_statuses": [
+            "completed"
+          ],
+          "command_count": 11,
+          "nonzero_exit_command_count": 2,
+          "message_count": 4,
+          "item_types": [
+            "agentMessage",
+            "commandExecution",
+            "fileChange",
+            "reasoning",
+            "userMessage",
+            "webSearch"
+          ],
+          "model_reroute_event_count": 0,
+          "total_network_request_count": null,
+          "native_search_command_observations": [
+            {
+              "exit_code": 2,
+              "valid_search_response": false
+            }
+          ]
+        }
+      ],
+      "instrumented_search_http": {
+        "scope": "whole_ephemeral_session_local_fixture_endpoint_only",
+        "count": 1,
+        "statuses": [
+          503
+        ]
+      },
+      "task_artifact": {
+        "name": "ci-plan.md",
+        "sha256": "91e766e16b160d039ebda381fb50a68ec09d46dde3a8d4b8067e035067840b20",
+        "bullet_count": 5,
+        "structural_topic_check": "passed",
+        "human_task_quality": "not_measured"
+      }
+    },
+    {
+      "id": "fixture-empty",
+      "scope": "explicitly_primed_transport_fixture",
+      "excluded_from_development_evidence": false,
+      "resolved_configuration": {
+        "cli_version": "codex-cli 0.165.0-alpha.1.2",
+        "model": "gpt-6.1-sol",
+        "modelProvider": "openai",
+        "reasoningEffort": "xhigh"
+      },
+      "model_provenance": "resolved_configuration_not_backend_attestation",
+      "ephemeral": true,
+      "persisted_path_recorded": false,
+      "skill_count": 55,
+      "enabled_skill_count": 54,
+      "agentforge_enabled": true,
+      "inventory_sha256": "f829731cd4b7394f17c04bc4c5edcd869d9330fcce45f7ed8210d1879d6c180b",
+      "recorded_instruction_source_count": 2,
+      "instruction_sources_sha256": "13bb41c6b383b6b3fc41bb6bac78d6df84fa6b516e52ffeba75ac865225d322c",
+      "input_sha256": {
+        "metadata": "b15b77af1554d9235500b16d8b2d0db9c29ee679b481dcc43dbd76c49b4dd634",
+        "events": "4b61086e72dc1a90c427239823744aa4d31d70b558565b43dc5f8e8d189dab4e",
+        "http_observations": "23425cf53864656f013e6839c959ea5f1c3027a7d88f4307cf5dfa012d29f9d9"
+      },
+      "turns": [
+        {
+          "label": "initial",
+          "status": "completed",
+          "elapsed_seconds": 72.34,
+          "prompt_sha256": "a99c5c893d13c920fc34b17d54d2b86cee82cd70d08468b1e2b1bc62d0740979",
+          "summary_sha256": "89b929ac5abb1ae5aacdae85d3a635c43f9b550e723be2ecc43d1d58373b9085",
+          "observed_completion_statuses": [
+            "completed"
+          ],
+          "command_count": 12,
+          "nonzero_exit_command_count": 0,
+          "message_count": 3,
+          "item_types": [
+            "agentMessage",
+            "commandExecution",
+            "fileChange",
+            "reasoning",
+            "userMessage"
+          ],
+          "model_reroute_event_count": 0,
+          "total_network_request_count": null,
+          "native_search_command_observations": [
+            {
+              "exit_code": 0,
+              "valid_search_response": true,
+              "result_count": 0,
+              "status": "no_match",
+              "catalog_revision": "synthetic-transport-fixture",
+              "ranking_version": "fixture-only"
+            }
+          ]
+        }
+      ],
+      "instrumented_search_http": {
+        "scope": "whole_ephemeral_session_local_fixture_endpoint_only",
+        "count": 1,
+        "statuses": [
+          200
+        ]
+      },
+      "task_artifact": {
+        "name": "ci-plan.md",
+        "sha256": "87a3d3d7bf7f70b0479d5f8829cf2e385c4a11fa7b426fc4a0aab453980e53f1",
+        "bullet_count": 6,
+        "structural_topic_check": "passed",
+        "human_task_quality": "not_measured"
+      }
+    },
+    {
+      "id": "fixture-match",
+      "scope": "explicitly_primed_transport_fixture",
+      "excluded_from_development_evidence": false,
+      "resolved_configuration": {
+        "cli_version": "codex-cli 0.165.0-alpha.1.2",
+        "model": "gpt-6.1-sol",
+        "modelProvider": "openai",
+        "reasoningEffort": "xhigh"
+      },
+      "model_provenance": "resolved_configuration_not_backend_attestation",
+      "ephemeral": true,
+      "persisted_path_recorded": false,
+      "skill_count": 55,
+      "enabled_skill_count": 54,
+      "agentforge_enabled": true,
+      "inventory_sha256": "f829731cd4b7394f17c04bc4c5edcd869d9330fcce45f7ed8210d1879d6c180b",
+      "recorded_instruction_source_count": 2,
+      "instruction_sources_sha256": "84984ceb8aabbfb672e5ca6e7544e42e66ccee6556c7d9435f8047a9d6d2f577",
+      "input_sha256": {
+        "metadata": "4f2590f9e06043b524a5e9288b98109651cf9619bf687d9570ab5deb00c33557",
+        "events": "ed6f84a73aab28e37b4441a96f68e0e17b1757fba04df901885d0e8527a13907",
+        "http_observations": "23425cf53864656f013e6839c959ea5f1c3027a7d88f4307cf5dfa012d29f9d9"
+      },
+      "turns": [
+        {
+          "label": "initial",
+          "status": "completed",
+          "elapsed_seconds": 81.25,
+          "prompt_sha256": "a99c5c893d13c920fc34b17d54d2b86cee82cd70d08468b1e2b1bc62d0740979",
+          "summary_sha256": "0b4e86964d60665c4c8d0519e17ca672dac8fe6d16415dd6ed86d9ad0784a96d",
+          "observed_completion_statuses": [
+            "completed"
+          ],
+          "command_count": 10,
+          "nonzero_exit_command_count": 1,
+          "message_count": 4,
+          "item_types": [
+            "agentMessage",
+            "commandExecution",
+            "fileChange",
+            "reasoning",
+            "userMessage"
+          ],
+          "model_reroute_event_count": 0,
+          "total_network_request_count": null,
+          "native_search_command_observations": [
+            {
+              "exit_code": 0,
+              "valid_search_response": true,
+              "result_count": 1,
+              "status": "matches",
+              "catalog_revision": "synthetic-transport-fixture",
+              "ranking_version": "fixture-only"
+            }
+          ]
+        },
+        {
+          "label": "rejection-followup",
+          "status": "completed",
+          "elapsed_seconds": 12.77,
+          "prompt_sha256": "afee2fa4c56e60c3f184166a165cb0395ae7e35d3f3ebe3f02e0f05fadb2ce27",
+          "summary_sha256": "ef2a39a14e569a14c0a5955bed5950a18f0c1afe8aca1b9a578a85d7e7ef139d",
+          "observed_completion_statuses": [
+            "completed"
+          ],
+          "command_count": 0,
+          "nonzero_exit_command_count": 0,
+          "message_count": 1,
+          "item_types": [
+            "agentMessage",
+            "reasoning",
+            "userMessage"
+          ],
+          "model_reroute_event_count": 0,
+          "total_network_request_count": null,
+          "native_search_command_observations": []
+        }
+      ],
+      "instrumented_search_http": {
+        "scope": "whole_ephemeral_session_local_fixture_endpoint_only",
+        "count": 1,
+        "statuses": [
+          200
+        ]
+      },
+      "task_artifact": {
+        "name": "ci-plan.md",
+        "sha256": "4850f798008244929450562bf0ea971f0d9b72da83b9bd20e21df6bbfb5c0518",
+        "bullet_count": 6,
+        "structural_topic_check": "passed",
+        "human_task_quality": "not_measured"
+      }
+    }
+  ],
+  "excluded_captures": [
+    {
+      "id": "trivial-thanks",
+      "scope": "exact_prompt_overlap_detected_after_run",
+      "excluded_from_development_evidence": true,
+      "resolved_configuration": {
+        "cli_version": "codex-cli 0.165.0-alpha.1.2",
+        "model": "gpt-6.1-sol",
+        "modelProvider": "openai",
+        "reasoningEffort": "xhigh"
+      },
+      "model_provenance": "resolved_configuration_not_backend_attestation",
+      "ephemeral": true,
+      "persisted_path_recorded": false,
+      "skill_count": 47,
+      "enabled_skill_count": 46,
+      "agentforge_enabled": true,
+      "inventory_sha256": "de497254b4c7d27d0cca07265e784f5686956d78257e7adfbeab4cc1506ff424",
+      "recorded_instruction_source_count": 1,
+      "instruction_sources_sha256": "1441efeec15b81a6aa0b4b8371354ef8b5f2941812faf6903230b316b5366363",
+      "input_sha256": {
+        "metadata": "de7ce6352c2b9294a026dea56ab136d8fbe7ee2206af0862493e163b766e24b1",
+        "events": "73d79c1acb323a29d958020270203c4e502cee28f07b189b385c58747c036076"
+      },
+      "turns": [
+        {
+          "label": "initial",
+          "status": "completed",
+          "elapsed_seconds": 8.23,
+          "prompt_sha256": "8e9df057ef8acd597023204f054f8f881ef69a7e5878bab94339395dbc38fdd2",
+          "summary_sha256": "9e5335cd0fcecb7aa93c0376f54362b7f3f25f6c88897f8f8fe1746c63e20bcd",
+          "observed_completion_statuses": [
+            "completed"
+          ],
+          "command_count": 0,
+          "nonzero_exit_command_count": 0,
+          "message_count": 1,
+          "item_types": [
+            "agentMessage",
+            "reasoning",
+            "userMessage"
+          ],
+          "model_reroute_event_count": 0,
+          "total_network_request_count": null,
+          "native_search_command_observations": []
+        }
+      ],
+      "instrumented_search_http": null
+    }
+  ],
+  "limitations": [
+    "No held-out reliability run or human relevance scoring.",
+    "Fault fixture project instructions explicitly direct registry search to loopback.",
+    "Resolved model configuration and absence of reroute events do not attest the executing backend model.",
+    "Recorded instruction hashes do not capture the entire effective harness context.",
+    "Write controls do not isolate reads, plugin startup traffic, or every network request.",
+    "Candidate mention and non-repetition after decline do not prove accepted adoption or activation.",
+    "The excluded trivial capture and the ordinary workflow timeout remain retained."
+  ]
+}

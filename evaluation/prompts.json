@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "prompts": [
+    {
+      "id": "p001",
+      "text": "Turn these rough notes into a proposal that explains the problem, the options, and the decision we need from the team."
+    },
+    {
+      "id": "p002",
+      "text": "This draft feels full of canned phrases. Make it sound like a person wrote it while keeping every factual point."
+    },
+    {
+      "id": "p003",
+      "text": "Put this letter into an editable Word file with a letterhead, page numbers, and room for a signature."
+    },
+    {
+      "id": "p004",
+      "text": "Write a concise weekly update for colleagues from these shipping notes and unresolved issues."
+    },
+    {
+      "id": "p005",
+      "text": "Help me build a decision memo about keeping our current storage provider or replacing it. I have evidence but no outline."
+    },
+    {
+      "id": "p006",
+      "text": "Rewrite this announcement in my usual voice. I have included two past messages that sound like me."
+    },
+    {
+      "id": "p007",
+      "text": "Read this help page and point out passages that are hard to follow, too wordy, or inconsistent in tone."
+    },
+    {
+      "id": "p008",
+      "text": "We agreed on the feature requirements. Break the work into an implementation sequence with checkpoints before we change code."
+    },
+    {
+      "id": "p009",
+      "text": "Package the procedure we keep repeating into reusable instructions for our coding assistant, with clear conditions for using it."
+    },
+    {
+      "id": "p010",
+      "text": "Use these quarterly notes to create an editable presentation for the leadership meeting, including speaker notes."
+    },
+    {
+      "id": "p011",
+      "text": "Our signup screen feels cluttered and important choices disappear. Rework the hierarchy and spacing so first-time visitors can finish it."
+    },
+    {
+      "id": "p012",
+      "text": "Design a print-ready poster for our small astronomy exhibition with original imagery and readable event details."
+    },
+    {
+      "id": "p013",
+      "text": "Capture the colors, spacing, and component conventions from this codebase so future screens follow the same visual rules."
+    },
+    {
+      "id": "p014",
+      "text": "Here is the design-file link for our checkout screen. Build the page so the layout and components match it closely."
+    },
+    {
+      "id": "p015",
+      "text": "Create an interactive sketch of drifting ink-like particles with a seed control so I can reproduce a composition I like."
+    },
+    {
+      "id": "p016",
+      "text": "Remove the background from this product photo and give me a clean transparent cutout."
+    },
+    {
+      "id": "p017",
+      "text": "Give this existing report and slide deck a consistent visual treatment using one set of colors and type choices."
+    },
+    {
+      "id": "p018",
+      "text": "Build a distinctive homepage for our ceramics studio from the supplied copy, with good small-screen behavior."
+    },
+    {
+      "id": "p019",
+      "text": "Check this interface for keyboard access, readable contrast, and confusing interactions, then give me concrete fixes."
+    },
+    {
+      "id": "p020",
+      "text": "The address form is awkward on a phone. Simplify its layout and show clear validation feedback without losing required fields."
+    },
+    {
+      "id": "p021",
+      "text": "The checks on my pull request started failing after the last commit. Find the failing job, explain the cause, and fix it."
+    },
+    {
+      "id": "p022",
+      "text": "Review the login and password-reset code for security weaknesses and suggest changes that fit this stack."
+    },
+    {
+      "id": "p023",
+      "text": "This test fails only after several other tests run. Reproduce the sequence and find the first state that leaks between them."
+    },
+    {
+      "id": "p024",
+      "text": "Scrolling through our React results page is slow. Find avoidable rendering and data-loading work before changing the design."
+    },
+    {
+      "id": "p025",
+      "text": "Our Expo app stutters when a long message list updates. Improve list behavior while preserving the existing interactions."
+    },
+    {
+      "id": "p026",
+      "text": "Create a shareable preview of this web app in our Vercel project so a colleague can review the branch."
+    },
+    {
+      "id": "p027",
+      "text": "Let our assistant query the inventory service through well-defined tools. Build the server adapter from this service API."
+    },
+    {
+      "id": "p028",
+      "text": "Make the product grid animate smoothly into a detail page and back in our React app, including the browser back button."
+    },
+    {
+      "id": "p029",
+      "text": "Use repository history to identify who maintains security-sensitive files and where only one person knows the code."
+    },
+    {
+      "id": "p030",
+      "text": "Map the trust boundaries and plausible abuse paths for our file-upload service, then rank the mitigations."
+    },
+    {
+      "id": "p031",
+      "text": "Pull the tables out of these scanned annual reports and preserve which page each number came from."
+    },
+    {
+      "id": "p032",
+      "text": "Combine these contract PDFs in the supplied order and keep the bookmarks usable."
+    },
+    {
+      "id": "p033",
+      "text": "Clean this sales workbook, repair mixed date formats, and produce a separate sheet showing totals by month."
+    },
+    {
+      "id": "p034",
+      "text": "Audit the formulas in this budget spreadsheet and show which totals stop updating when another row is added."
+    },
+    {
+      "id": "p035",
+      "text": "Compare the different customer-onboarding decisions across our Notion pages and give me a cited account of where they disagree."
+    },
+    {
+      "id": "p036",
+      "text": "Inspect this exported PDF report for broken page layouts and give me a corrected version that prints cleanly."
+    },
+    {
+      "id": "p037",
+      "text": "Create a notebook that compares these two sampling methods on my supplied dataset and makes the experiment easy to rerun."
+    },
+    {
+      "id": "p038",
+      "text": "Transcribe this interview recording and distinguish the speakers wherever the audio supports it."
+    },
+    {
+      "id": "p039",
+      "text": "Summarize the recurring production incidents in our Sentry project over the past week without changing any issues."
+    },
+    {
+      "id": "p040",
+      "text": "Find the current official instructions for sending streamed responses through the OpenAI API and cite the relevant documentation."
+    },
+    {
+      "id": "p041",
+      "text": "Prepare tomorrow's customer review meeting using our Notion notes, with an agenda and the decisions we need to make."
+    },
+    {
+      "id": "p042",
+      "text": "Turn the decisions in this meeting recap into linked Notion pages that the next project owner can find."
+    },
+    {
+      "id": "p043",
+      "text": "Create the agreed follow-up tickets in our Linear project and connect them to the relevant workstream."
+    },
+    {
+      "id": "p044",
+      "text": "Work through this approved implementation checklist in the current session and report progress at its review points."
+    },
+    {
+      "id": "p045",
+      "text": "Before we build a new intake process, help me explore a few workable approaches and settle the requirements."
+    },
+    {
+      "id": "p046",
+      "text": "Add this reusable assistant workflow from the GitHub repository to my local collection without overwriting what I already have."
+    },
+    {
+      "id": "p047",
+      "text": "The reviewer left several comments on this branch. Check which ones are valid, make the needed changes, and explain any you decline."
+    },
+    {
+      "id": "p048",
+      "text": "The feature branch is done and the checks pass. Help me choose a safe way to integrate it and clean up the temporary branch."
+    },
+    {
+      "id": "p049",
+      "text": "Move our existing assistant instructions and tool-server configuration into the formats expected by Codex."
+    },
+    {
+      "id": "p050",
+      "text": "Make a command-line tool for our reporting API so staff can fetch a report with a few arguments instead of writing requests by hand."
+    },
+    {
+      "id": "p051",
+      "text": "Calculate a stable controller for this six-axis robot using its measured inertial model, and prove the closed-loop stability."
+    },
+    {
+      "id": "p052",
+      "text": "Determine the crystal structure that best fits these powder diffraction peaks, including uncertainty in lattice parameters."
+    },
+    {
+      "id": "p053",
+      "text": "Reconstruct the genealogy of this medieval manuscript from the supplied variant readings."
+    },
+    {
+      "id": "p054",
+      "text": "Create a finite-element model of this turbine blade and predict thermal fatigue under the supplied load cycles."
+    },
+    {
+      "id": "p055",
+      "text": "Fit a pharmacokinetic compartment model to these concentration measurements and identify which parameters are estimable."
+    },
+    {
+      "id": "p056",
+      "text": "Optimize a chemical plant distillation schedule using the supplied equilibrium and energy constraints."
+    },
+    {
+      "id": "p057",
+      "text": "Infer the earthquake focal mechanism from these waveform recordings and report the uncertainty."
+    },
+    {
+      "id": "p058",
+      "text": "Generate a verified collision-free toolpath for this five-axis milling machine using the supplied stock geometry."
+    },
+    {
+      "id": "p059",
+      "text": "Identify the species in these environmental DNA reads using a reproducible taxonomic classification pipeline."
+    },
+    {
+      "id": "p060",
+      "text": "Estimate ocean salinity profiles from these satellite radiances using the sensor calibration equations."
+    },
+    {
+      "id": "p061",
+      "text": "Produce a constraint-satisfying airline crew roster with the rest and certification rules in this union agreement."
+    },
+    {
+      "id": "p062",
+      "text": "Perform a Sanskrit grammatical analysis of these verses and explain each sandhi transformation."
+    },
+    {
+      "id": "p063",
+      "text": "Synthesize an FPGA implementation of this signal filter and verify timing closure at the specified clock rate."
+    },
+    {
+      "id": "p064",
+      "text": "Invert these seismic travel times to recover a three-dimensional velocity model."
+    },
+    {
+      "id": "p065",
+      "text": "Plan an irrigation schedule from this soil-water balance model and the crop growth-stage constraints."
+    },
+    {
+      "id": "p066",
+      "text": "Compute the flutter boundary for this aircraft wing using the supplied aeroelastic matrices."
+    },
+    {
+      "id": "p067",
+      "text": "Derive a reaction mechanism that explains these isotope-labeling measurements and test its identifiability."
+    },
+    {
+      "id": "p068",
+      "text": "Calibrate this telescope interferometer from the raw visibility measurements and reconstruct the target image."
+    },
+    {
+      "id": "p069",
+      "text": "Solve the container-stowage plan with vessel stability, hazardous-goods separation, and port-order constraints."
+    },
+    {
+      "id": "p070",
+      "text": "Design a low-noise radio-frequency front end from the supplied impedance and noise specifications."
+    },
+    {
+      "id": "p071",
+      "text": "Infer historical sound changes for this language family from the supplied cognate sets."
+    },
+    {
+      "id": "p072",
+      "text": "Determine a physically feasible mine ventilation network for the supplied tunnel layout and airflow limits."
+    },
+    {
+      "id": "p073",
+      "text": "Estimate the gravitational lens mass distribution from these multiple-image positions and redshifts."
+    },
+    {
+      "id": "p074",
+      "text": "Prove that this cryptographic protocol satisfies its stated secrecy property under an active network attacker."
+    },
+    {
+      "id": "p075",
+      "text": "Fit a coalescent demographic model to these genomic alignments and compare the candidate population histories."
+    },
+    {
+      "id": "p076",
+      "text": "Thanks, that helps."
+    },
+    {
+      "id": "p077",
+      "text": "Got it."
+    },
+    {
+      "id": "p078",
+      "text": "Yes."
+    },
+    {
+      "id": "p079",
+      "text": "No, thanks."
+    },
+    {
+      "id": "p080",
+      "text": "Please continue."
+    },
+    {
+      "id": "p081",
+      "text": "Okay, I will read it."
+    },
+    {
+      "id": "p082",
+      "text": "That is enough for now."
+    },
+    {
+      "id": "p083",
+      "text": "Hello!"
+    },
+    {
+      "id": "p084",
+      "text": "Good morning."
+    },
+    {
+      "id": "p085",
+      "text": "Sounds good to me."
+    },
+    {
+      "id": "p086",
+      "text": "Use the second option."
+    },
+    {
+      "id": "p087",
+      "text": "Keep the current name."
+    },
+    {
+      "id": "p088",
+      "text": "Please make that sentence shorter."
+    },
+    {
+      "id": "p089",
+      "text": "Change the heading to Overview."
+    },
+    {
+      "id": "p090",
+      "text": "Add a period at the end."
+    },
+    {
+      "id": "p091",
+      "text": "What is 8 plus 7?"
+    },
+    {
+      "id": "p092",
+      "text": "How many letters are in cat?"
+    },
+    {
+      "id": "p093",
+      "text": "Spell calendar for me."
+    },
+    {
+      "id": "p094",
+      "text": "Translate hello into French."
+    },
+    {
+      "id": "p095",
+      "text": "Write the number twenty as digits."
+    },
+    {
+      "id": "p096",
+      "text": "Repeat the last sentence."
+    },
+    {
+      "id": "p097",
+      "text": "I will be back later."
+    },
+    {
+      "id": "p098",
+      "text": "Never mind."
+    },
+    {
+      "id": "p099",
+      "text": "Please stop here."
+    },
+    {
+      "id": "p100",
+      "text": "Thank you, goodbye."
+    }
+  ]
+}

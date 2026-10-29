@@ -10,6 +10,73 @@
       "get": {
         "summary": "Catalog",
         "operationId": "catalog_v1_catalog_get",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100000,
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            }
+          },
+          {
+            "name": "harness",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "codex",
+                    "claude-code",
+                    "cursor",
+                    "gemini",
+                    "opencode",
+                    "devin",
+                    "portable"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Harness"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -17,6 +84,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CatalogResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -65,6 +142,70 @@
   },
   "components": {
     "schemas": {
+      "CapabilityProfile": {
+        "properties": {
+          "extractor_version": {
+            "type": "string",
+            "title": "Extractor Version",
+            "default": "legacy"
+          },
+          "source_revision": {
+            "type": "string",
+            "title": "Source Revision",
+            "default": ""
+          },
+          "outputs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Outputs"
+          },
+          "use_when": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Use When"
+          },
+          "avoid_when": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Avoid When"
+          },
+          "tools": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 32,
+            "title": "Tools"
+          },
+          "credentials": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Credentials"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/FieldEvidence"
+            },
+            "type": "array",
+            "maxItems": 24,
+            "title": "Evidence"
+          }
+        },
+        "type": "object",
+        "title": "CapabilityProfile"
+      },
       "CatalogResponse": {
         "properties": {
           "rows": {
@@ -99,6 +240,38 @@
               }
             ],
             "title": "Updated At"
+          },
+          "offset": {
+            "type": "integer",
+            "title": "Offset",
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Limit",
+            "default": 50
+          },
+          "filtered_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filtered Count"
+          },
+          "next_offset": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Offset"
           }
         },
         "type": "object",
@@ -110,6 +283,46 @@
           "updated_at"
         ],
         "title": "CatalogResponse"
+      },
+      "FieldEvidence": {
+        "properties": {
+          "field": {
+            "type": "string",
+            "maxLength": 64,
+            "title": "Field"
+          },
+          "quote": {
+            "type": "string",
+            "maxLength": 480,
+            "title": "Quote"
+          },
+          "location": {
+            "type": "string",
+            "maxLength": 240,
+            "title": "Location"
+          },
+          "source_url": {
+            "type": "string",
+            "title": "Source Url"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "declared",
+              "inferred"
+            ],
+            "title": "Status",
+            "default": "declared"
+          }
+        },
+        "type": "object",
+        "required": [
+          "field",
+          "quote",
+          "location",
+          "source_url"
+        ],
+        "title": "FieldEvidence"
       },
       "HTTPValidationError": {
         "properties": {
@@ -124,32 +337,143 @@
         "type": "object",
         "title": "HTTPValidationError"
       },
-      "PublishRequest": {
+      "HarnessSupport": {
         "properties": {
-          "rows": {
+          "harness": {
+            "type": "string",
+            "enum": [
+              "codex",
+              "claude-code",
+              "cursor",
+              "gemini",
+              "opencode",
+              "devin",
+              "portable"
+            ],
+            "title": "Harness"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "declared",
+              "inferred",
+              "tested",
+              "incompatible",
+              "unknown"
+            ],
+            "title": "Status"
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 480,
+            "title": "Detail"
+          },
+          "evidence_url": {
+            "type": "string",
+            "title": "Evidence Url"
+          },
+          "checked_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Checked At"
+          },
+          "harness_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Harness Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "harness",
+          "status",
+          "detail",
+          "evidence_url"
+        ],
+        "title": "HarnessSupport"
+      },
+      "JsonValue": {},
+      "RecommendationFit": {
+        "properties": {
+          "reason": {
+            "type": "string",
+            "maxLength": 640,
+            "title": "Reason"
+          },
+          "evidence": {
             "items": {
-              "$ref": "#/components/schemas/VersionInput"
+              "$ref": "#/components/schemas/FieldEvidence"
             },
             "type": "array",
-            "maxItems": 500,
-            "minItems": 1,
-            "title": "Rows"
+            "maxItems": 3,
+            "title": "Evidence"
           },
-          "complete_repositories": {
+          "missing_tools": {
             "items": {
               "type": "string"
             },
             "type": "array",
-            "maxItems": 10,
-            "title": "Complete Repositories"
+            "maxItems": 32,
+            "title": "Missing Tools"
+          },
+          "notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "title": "RecommendationFit"
+      },
+      "SearchConstraints": {
+        "properties": {
+          "available_tools": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "maxItems": 32
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Available Tools"
+          },
+          "allow_setup": {
+            "type": "boolean",
+            "title": "Allow Setup",
+            "default": true
+          },
+          "allow_credentials": {
+            "type": "boolean",
+            "title": "Allow Credentials",
+            "default": true
           }
         },
         "additionalProperties": false,
         "type": "object",
-        "required": [
-          "rows"
-        ],
-        "title": "PublishRequest"
+        "title": "SearchConstraints"
       },
       "SearchMeta": {
         "properties": {
@@ -226,6 +550,16 @@
             "minimum": 1.0,
             "title": "Limit",
             "default": 5
+          },
+          "constraints": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SearchConstraints"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": false,
@@ -333,6 +667,35 @@
               "unavailable"
             ],
             "title": "Adoption Status"
+          },
+          "profile": {
+            "$ref": "#/components/schemas/CapabilityProfile"
+          },
+          "harness_support": {
+            "items": {
+              "$ref": "#/components/schemas/HarnessSupport"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Harness Support"
+          },
+          "fit": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RecommendationFit"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "author_metadata": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "type": "object",
+            "maxProperties": 64,
+            "title": "Author Metadata"
           }
         },
         "additionalProperties": false,
@@ -378,6 +741,22 @@
           "checked_at": {
             "type": "string",
             "title": "Checked At"
+          },
+          "files": {
+            "items": {
+              "$ref": "#/components/schemas/SourceFile"
+            },
+            "type": "array",
+            "maxItems": 200,
+            "title": "Files"
+          },
+          "discovered_via": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "title": "Discovered Via"
           }
         },
         "type": "object",
@@ -390,6 +769,25 @@
           "checked_at"
         ],
         "title": "Source"
+      },
+      "SourceFile": {
+        "properties": {
+          "path": {
+            "type": "string",
+            "title": "Path"
+          },
+          "git_blob_sha1": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$",
+            "title": "Git Blob Sha1"
+          }
+        },
+        "type": "object",
+        "required": [
+          "path",
+          "git_blob_sha1"
+        ],
+        "title": "SourceFile"
       },
       "ValidationError": {
         "properties": {
@@ -430,56 +828,6 @@
           "type"
         ],
         "title": "ValidationError"
-      },
-      "VersionInput": {
-        "properties": {
-          "version_id": {
-            "type": "string",
-            "title": "Version Id"
-          },
-          "skill_id": {
-            "type": "string",
-            "title": "Skill Id"
-          },
-          "name": {
-            "type": "string",
-            "maxLength": 120,
-            "title": "Name"
-          },
-          "description": {
-            "type": "string",
-            "maxLength": 1800,
-            "title": "Description"
-          },
-          "body": {
-            "type": "string",
-            "maxLength": 128000,
-            "title": "Body"
-          },
-          "examples": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "maxItems": 10,
-            "title": "Examples"
-          },
-          "payload": {
-            "$ref": "#/components/schemas/Skill"
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "version_id",
-          "skill_id",
-          "name",
-          "description",
-          "body",
-          "examples",
-          "payload"
-        ],
-        "title": "VersionInput"
       }
     }
   }

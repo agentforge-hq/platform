@@ -30,10 +30,20 @@ revisions are real. Unknown compatibility is labeled. No fabricated social
 proof, completeness claims, or benchmark claims. Platform code is proprietary.
 Cloud credentials remain server-side. No paid hosting add-ons or plan upgrades.
 
+The approved brand direction is a literary field guide with warm ivory,
+forest green, restrained gold, an inscription-like treatment of the complete
+founder tagline, and an original two-ring forge emblem. Keep search and
+installation controls familiar and readable. The literary font is self-hosted.
+The platform and website remain proprietary, with the bundled font under its
+own SIL Open Font License.
+
 ## Evidence on Hand
 
-The company PRD is the approved build brief. No hosted catalog or user outcomes
-were measured before this implementation. Deployment targets are being confirmed.
+The company PRD defines the pilot. The existing MoS Vercel project serves
+lordoftheskill.com; the dedicated AgentForge database in the Pixeltable Pro
+organization owns the catalog and service. Source-backed discovery is deployed.
+Human-reviewed relevance, full harness reliability, task improvement and the
+48-hour operating gate remain open; the candidate evaluation is not a release claim.
 
 ## Accessibility & Inclusion
 

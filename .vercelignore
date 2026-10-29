@@ -1,5 +1,8 @@
 .git
 .audit
+.impeccable
+evaluation
+scripts
 .venv
 .env*
 node_modules
