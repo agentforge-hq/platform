@@ -114,3 +114,87 @@ test("gateway does not leak an upstream error body", async () => {
     delete process.env.PIXELTABLE_SERVICE_KEY;
   }
 });
+
+test("catalog paging validates filters and forwards only its fixed route", async () => {
+  const { catalogGateway } = await import("../src/lib/gateway");
+  for (const suffix of [
+    "?limit=51",
+    "?offset=-1",
+    "?url=https://private.example",
+    "?harness=made-up",
+    "?limit=5&limit=10",
+  ])
+    assert.equal(
+      (
+        await catalogGateway(
+          new Request(`http://localhost/api/v1/catalog${suffix}`),
+        )
+      ).status,
+      422,
+    );
+  process.env.PIXELTABLE_SERVICE_URL = "https://backend.example/app";
+  process.env.PIXELTABLE_SERVICE_KEY = "test";
+  const fetchMock = mock.method(
+    globalThis,
+    "fetch",
+    async (input: string | URL | Request) => {
+      assert.equal(
+        String(input),
+        "https://backend.example/app/v1/catalog?offset=50&limit=25&category=Writing&harness=codex",
+      );
+      return Response.json({
+        rows: [],
+        skill_count: 570,
+        source_count: 9,
+        categories: ["Writing"],
+        updated_at: null,
+        offset: 50,
+        limit: 25,
+        next_offset: null,
+        filtered_count: 15,
+      });
+    },
+  );
+  try {
+    assert.equal(
+      (
+        await catalogGateway(
+          new Request(
+            "http://localhost/api/v1/catalog?offset=50&limit=25&category=Writing&harness=codex",
+          ),
+        )
+      ).status,
+      200,
+    );
+  } finally {
+    fetchMock.mock.restore();
+    delete process.env.PIXELTABLE_SERVICE_URL;
+    delete process.env.PIXELTABLE_SERVICE_KEY;
+  }
+});
+
+test("search constraints permit only explicit bounded names and boolean choices", () => {
+  for (const constraints of [
+    { available_tools: ["/private/python"] },
+    { available_tools: Array(33).fill("node") },
+    { allow_setup: "false" },
+    { allow_credentials: 1 },
+    { transcript: "private" },
+  ])
+    assert.equal(
+      searchRequestSchema.safeParse({ query: "debug a crash", constraints })
+        .success,
+      false,
+    );
+  assert.equal(
+    searchRequestSchema.safeParse({
+      query: "debug a crash",
+      constraints: {
+        available_tools: ["python3.11"],
+        allow_setup: false,
+        allow_credentials: false,
+      },
+    }).success,
+    true,
+  );
+});

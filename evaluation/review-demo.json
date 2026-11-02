@@ -1,0 +1,9 @@
+{
+  "prompts": [
+    {"id": "demo-writing", "text": "Turn the release notes for our offline photo organizer into a concise customer email."},
+    {"id": "demo-engineering", "text": "Track down why our Rust import worker fails only when the input folder is empty."},
+    {"id": "demo-trivial", "text": "Thanks, I have enough to work with."},
+    {"id": "demo-unmatched", "text": "Plan the irrigation timing for my balcony tomato plants."},
+    {"id": "demo-design", "text": "Help people compare the storage plans on our existing product page."}
+  ]
+}

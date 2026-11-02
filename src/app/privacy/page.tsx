@@ -13,7 +13,9 @@ export default function Privacy() {
       <h2>Search requests</h2>
       <p>
         The website and installed skill send a task query, an optional harness
-        name, and a result limit to the AgentForge service. Searches run against
+        name, a result limit, and any tool names or setup/account preferences
+        you explicitly provide to the AgentForge service. We do not need the
+        accounts or keys themselves. Searches run against
         a catalog stored in Pixeltable Cloud. A small embedding model processes
         the query on that backend. Search does not require an account.
       </p>

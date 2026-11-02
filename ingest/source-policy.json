@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "max_repositories": 12,
+  "max_skills": 1000,
+  "max_files_per_skill": 200,
+  "direct": [
+    {
+      "repository": "anthropics/skills",
+      "roots": [
+        "skills/"
+      ],
+      "max_skills": 100
+    },
+    {
+      "repository": "openai/skills",
+      "roots": [
+        "skills/"
+      ],
+      "max_skills": 100,
+      "excluded_manifests": [
+        "skills/.curated/cloudflare-deploy/SKILL.md"
+      ]
+    },
+    {
+      "repository": "vercel-labs/agent-skills",
+      "roots": [
+        "skills/"
+      ],
+      "max_skills": 100
+    },
+    {
+      "repository": "obra/superpowers",
+      "roots": [
+        "skills/"
+      ],
+      "max_skills": 100
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "roots": [
+        ".agents/skills/"
+      ],
+      "max_skills": 100
+    },
+    {
+      "repository": "blader/humanizer",
+      "roots": [
+        ""
+      ],
+      "max_skills": 100
+    },
+    {
+      "repository": "microsoft/skills",
+      "roots": [
+        ".github/skills/",
+        ".github/plugins/"
+      ],
+      "max_skills": 300,
+      "excluded_manifests": [
+        ".github/plugins/azure-skills/skills/microsoft-foundry/SKILL.md"
+      ]
+    },
+    {
+      "repository": "trailofbits/skills",
+      "roots": [
+        "plugins/"
+      ],
+      "max_skills": 150
+    }
+  ],
+  "registry": {
+    "kind": "skills.sh",
+    "queries": [
+      {
+        "query": "workflow",
+        "owner": "wshobson"
+      }
+    ],
+    "result_limit": 20,
+    "allowed_repositories": [
+      {
+        "repository": "wshobson/agents",
+        "roots": [
+          "plugins/"
+        ],
+        "max_skills": 250
+      }
+    ]
+  },
+  "excluded_components": [
+    "tests",
+    "test",
+    "fixtures",
+    "__fixtures__",
+    "testdata",
+    "node_modules",
+    ".deprecated",
+    "dist",
+    "build",
+    "generated",
+    "vendor",
+    "templates",
+    "examples"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-10-28T04:02:34.146406+00:00",
+  "corpus_sha256": "81e6b2cf78b8b60f8e7b9d11bfa41cd89173404f6f757da92aa0d1d3b9f270ac",
+  "files": {
+    "prompts.json": "ea4b5439beba747ec56d91af85d80b3cb58a02b9c6cd5af6db37768dd2a5c565",
+    "labels.json": "7b6e389692f1d17abd102ed2b5d7ae9f1bc552ec7ad46acf35662be1e2bc89e3"
+  },
+  "counts": {
+    "relevant": 50,
+    "no_match": 25,
+    "trivial": 25
+  },
+  "relevant_domains": {
+    "writing": 10,
+    "design": 10,
+    "engineering": 10,
+    "research": 10,
+    "operations": 10
+  },
+  "human_review_status": "pending",
+  "authorship": "Machine-authored candidate corpus; not human-reviewed release evidence.",
+  "source_baseline": {
+    "sha256": "137b69c24fc0a082e0fb0a12ae930aeae43755ae398fc43ff3e395dd85c39a72",
+    "skill_count": 90,
+    "source_count": 6,
+    "updated_at": "2026-10-27T14:41:16.175312Z",
+    "repository_revisions": {
+      "anthropics/skills": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "openai/skills": "49f948faa9258a0c61caceaf225e179651397431",
+      "pbakaus/impeccable": "d34c87e1a00989ae8dbdd7f6b30b70f23319e860",
+      "vercel-labs/agent-skills": "6ec269328bc400712ee225a173a14b6b29128df7",
+      "obra/superpowers": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "blader/humanizer": "8c307f367c91bd974002f10f2be2965d642c13df"
+    }
+  },
+  "provenance": [
+    "Authored before final tuning using only the 90-skill baseline and approved product brief.",
+    "No future enrichment, ranker output, or held-out outcomes were read.",
+    "Prompts are ordinary synthetic requests, not raw user queries or transcripts.",
+    "Labels and rationales are evaluator-only and must not enter the tested harness context.",
+    "No prompt exactly duplicates a baseline description or example, and no ten-word source passage was copied.",
+    "No-match labels are candidate judgments conditional on the frozen baseline and require human review.",
+    "Do not tune ranking on held-out prompts or outcomes."
+  ],
+  "product_evidence": [
+    "company/product/discovery-service-prd.md AC-03 and AC-04",
+    "company/product/capability-plan.md",
+    "company/product/competitive-landscape.md"
+  ]
+}

@@ -1,0 +1,1319 @@
+{
+  "schema_version": 1,
+  "review_status": "machine_authored_pending_human_review",
+  "labels": [
+    {
+      "id": "p001",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/doc-coauthoring"
+      ],
+      "rationale": "A structured proposal needs a collaborative document workflow.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/doc-coauthoring",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/doc-coauthoring",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4"
+        }
+      ]
+    },
+    {
+      "id": "p002",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "blader/humanizer/."
+      ],
+      "rationale": "The requested change is a prose voice rewrite without changing meaning.",
+      "source_evidence": [
+        {
+          "skill_id": "blader/humanizer/.",
+          "url": "https://github.com/blader/humanizer/tree/8c307f367c91bd974002f10f2be2965d642c13df/.",
+          "revision": "8c307f367c91bd974002f10f2be2965d642c13df",
+          "manifest_sha256": "0612f1dfb1672b0ea9b97e139bf1f06cabe98d8b27424fe8ff01e1fb4cc99cad"
+        }
+      ]
+    },
+    {
+      "id": "p003",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/docx"
+      ],
+      "rationale": "The required artifact is a formatted editable Word document.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/docx",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/docx",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "8017469ea95fb7d28225c62daf8e2f3492a7b516fc64c18c28977cbf8980b7fe"
+        }
+      ]
+    },
+    {
+      "id": "p004",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/internal-comms"
+      ],
+      "rationale": "An internal team update fits the communication formats in this source.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/internal-comms",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/internal-comms",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "067b7587a344a928fc6534ef66b1bcd591fc7c26d207ea7ca3334aeb678d6475"
+        }
+      ]
+    },
+    {
+      "id": "p005",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/doc-coauthoring"
+      ],
+      "rationale": "The user needs help structuring and drafting a decision document.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/doc-coauthoring",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/doc-coauthoring",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "2e47d78846faeea4a56e9809c52700087a15a2155a3f293a3efbaded81398ef4"
+        }
+      ]
+    },
+    {
+      "id": "p006",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "blader/humanizer/."
+      ],
+      "rationale": "The prose revision must preserve the writer voice.",
+      "source_evidence": [
+        {
+          "skill_id": "blader/humanizer/.",
+          "url": "https://github.com/blader/humanizer/tree/8c307f367c91bd974002f10f2be2965d642c13df/.",
+          "revision": "8c307f367c91bd974002f10f2be2965d642c13df",
+          "manifest_sha256": "0612f1dfb1672b0ea9b97e139bf1f06cabe98d8b27424fe8ff01e1fb4cc99cad"
+        }
+      ]
+    },
+    {
+      "id": "p007",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "vercel-labs/agent-skills/skills/writing-guidelines"
+      ],
+      "rationale": "The task asks for a prose and style review.",
+      "source_evidence": [
+        {
+          "skill_id": "vercel-labs/agent-skills/skills/writing-guidelines",
+          "url": "https://github.com/vercel-labs/agent-skills/tree/6ec269328bc400712ee225a173a14b6b29128df7/skills/writing-guidelines",
+          "revision": "6ec269328bc400712ee225a173a14b6b29128df7",
+          "manifest_sha256": "89a5f581193289b80af58b980090aeed535047c8df2b55ccbaae0de40283a99d"
+        }
+      ]
+    },
+    {
+      "id": "p008",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "obra/superpowers/skills/writing-plans"
+      ],
+      "rationale": "The user needs a concrete plan from established requirements.",
+      "source_evidence": [
+        {
+          "skill_id": "obra/superpowers/skills/writing-plans",
+          "url": "https://github.com/obra/superpowers/tree/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/writing-plans",
+          "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+          "manifest_sha256": "a6c67c1900064347c2a329990dd3c555657c51c3ec53b259a08aa01a2c26139a"
+        }
+      ]
+    },
+    {
+      "id": "p009",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "obra/superpowers/skills/writing-skills",
+        "openai/skills/skills/.system/skill-creator"
+      ],
+      "rationale": "The output is reusable assistant instructions with invocation conditions.",
+      "source_evidence": [
+        {
+          "skill_id": "obra/superpowers/skills/writing-skills",
+          "url": "https://github.com/obra/superpowers/tree/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/writing-skills",
+          "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+          "manifest_sha256": "8cb3ac68c6d8c4bb46886b998b09af7989643cab8bd0e46ee86dd62e64546bbe"
+        },
+        {
+          "skill_id": "openai/skills/skills/.system/skill-creator",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.system/skill-creator",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "a17383bfb1448637ac1f757ad891ddb9676fa30b0eff620200f0e1cbc0cc0d50"
+        }
+      ]
+    },
+    {
+      "id": "p010",
+      "stratum": "relevant",
+      "domain": "writing",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/pptx"
+      ],
+      "rationale": "The required output is an editable presentation file and notes.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/pptx",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/pptx",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "a7ff03e2c85b636f55232a6b1555f5dd90216b7a1a359ab289d8364e6acbc6a0"
+        }
+      ]
+    },
+    {
+      "id": "p011",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "pbakaus/impeccable/.agents/skills/impeccable",
+        "anthropics/skills/skills/frontend-design"
+      ],
+      "rationale": "This interface redesign focuses on hierarchy and completion.",
+      "source_evidence": [
+        {
+          "skill_id": "pbakaus/impeccable/.agents/skills/impeccable",
+          "url": "https://github.com/pbakaus/impeccable/tree/d34c87e1a00989ae8dbdd7f6b30b70f23319e860/.agents/skills/impeccable",
+          "revision": "d34c87e1a00989ae8dbdd7f6b30b70f23319e860",
+          "manifest_sha256": "fab04b31f946573b00a8559db1fc070f8ea5825254d491c2b13156e5661a86d7"
+        },
+        {
+          "skill_id": "anthropics/skills/skills/frontend-design",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/frontend-design",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3"
+        }
+      ]
+    },
+    {
+      "id": "p012",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/canvas-design"
+      ],
+      "rationale": "The requested output is an original static poster.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/canvas-design",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/canvas-design",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "a1f288079624402f30682753c1d43920b6664785698d21d3e7aa197450a6448b"
+        }
+      ]
+    },
+    {
+      "id": "p013",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "pbakaus/impeccable/.agents/skills/impeccable"
+      ],
+      "rationale": "The task documents the current interface system.",
+      "source_evidence": [
+        {
+          "skill_id": "pbakaus/impeccable/.agents/skills/impeccable",
+          "url": "https://github.com/pbakaus/impeccable/tree/d34c87e1a00989ae8dbdd7f6b30b70f23319e860/.agents/skills/impeccable",
+          "revision": "d34c87e1a00989ae8dbdd7f6b30b70f23319e860",
+          "manifest_sha256": "fab04b31f946573b00a8559db1fc070f8ea5825254d491c2b13156e5661a86d7"
+        }
+      ]
+    },
+    {
+      "id": "p014",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/figma-implement-design",
+        "openai/skills/skills/.curated/figma"
+      ],
+      "rationale": "The job translates a linked design into production interface code.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/figma-implement-design",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/figma-implement-design",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "63f3d12d444547bbf68c10a12982b1f42e0f6e26fc074324564a13184d4b15ad"
+        },
+        {
+          "skill_id": "openai/skills/skills/.curated/figma",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/figma",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "5b11f7c8d0ce4c047b401323e7b8fe6559bd3162a3397bf5248634a5444609d5"
+        }
+      ]
+    },
+    {
+      "id": "p015",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/algorithmic-art"
+      ],
+      "rationale": "The task asks for controllable generative visual code.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/algorithmic-art",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/algorithmic-art",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "3bc4092c09804853186524c826bc0621b940bb6122c05b84496dff95388e6eef"
+        }
+      ]
+    },
+    {
+      "id": "p016",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "openai/skills/skills/.system/imagegen"
+      ],
+      "rationale": "The job edits a raster image.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.system/imagegen",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.system/imagegen",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "826d05b806d51fa81cd650f1c0854b0a1f7fbccd1b152c588ded1797a2e7218f"
+        }
+      ]
+    },
+    {
+      "id": "p017",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/theme-factory"
+      ],
+      "rationale": "The task applies one visual theme across artifacts.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/theme-factory",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/theme-factory",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "c35893e221e28895c52143cc11bf30e41a44817796b39d4b15727dadc9796552"
+        }
+      ]
+    },
+    {
+      "id": "p018",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/frontend-design",
+        "pbakaus/impeccable/.agents/skills/impeccable"
+      ],
+      "rationale": "The user needs a tailored responsive website.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/frontend-design",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/frontend-design",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3"
+        },
+        {
+          "skill_id": "pbakaus/impeccable/.agents/skills/impeccable",
+          "url": "https://github.com/pbakaus/impeccable/tree/d34c87e1a00989ae8dbdd7f6b30b70f23319e860/.agents/skills/impeccable",
+          "revision": "d34c87e1a00989ae8dbdd7f6b30b70f23319e860",
+          "manifest_sha256": "fab04b31f946573b00a8559db1fc070f8ea5825254d491c2b13156e5661a86d7"
+        }
+      ]
+    },
+    {
+      "id": "p019",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "vercel-labs/agent-skills/skills/web-design-guidelines",
+        "pbakaus/impeccable/.agents/skills/impeccable"
+      ],
+      "rationale": "The task explicitly requests an interface accessibility and usability review.",
+      "source_evidence": [
+        {
+          "skill_id": "vercel-labs/agent-skills/skills/web-design-guidelines",
+          "url": "https://github.com/vercel-labs/agent-skills/tree/6ec269328bc400712ee225a173a14b6b29128df7/skills/web-design-guidelines",
+          "revision": "6ec269328bc400712ee225a173a14b6b29128df7",
+          "manifest_sha256": "f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f"
+        },
+        {
+          "skill_id": "pbakaus/impeccable/.agents/skills/impeccable",
+          "url": "https://github.com/pbakaus/impeccable/tree/d34c87e1a00989ae8dbdd7f6b30b70f23319e860/.agents/skills/impeccable",
+          "revision": "d34c87e1a00989ae8dbdd7f6b30b70f23319e860",
+          "manifest_sha256": "fab04b31f946573b00a8559db1fc070f8ea5825254d491c2b13156e5661a86d7"
+        }
+      ]
+    },
+    {
+      "id": "p020",
+      "stratum": "relevant",
+      "domain": "design",
+      "approved_skill_ids": [
+        "pbakaus/impeccable/.agents/skills/impeccable",
+        "anthropics/skills/skills/frontend-design"
+      ],
+      "rationale": "The job refines a mobile form and its error states.",
+      "source_evidence": [
+        {
+          "skill_id": "pbakaus/impeccable/.agents/skills/impeccable",
+          "url": "https://github.com/pbakaus/impeccable/tree/d34c87e1a00989ae8dbdd7f6b30b70f23319e860/.agents/skills/impeccable",
+          "revision": "d34c87e1a00989ae8dbdd7f6b30b70f23319e860",
+          "manifest_sha256": "fab04b31f946573b00a8559db1fc070f8ea5825254d491c2b13156e5661a86d7"
+        },
+        {
+          "skill_id": "anthropics/skills/skills/frontend-design",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/frontend-design",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3"
+        }
+      ]
+    },
+    {
+      "id": "p021",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/gh-fix-ci"
+      ],
+      "rationale": "The job diagnoses and repairs GitHub Actions failures.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/gh-fix-ci",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/gh-fix-ci",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "7b326b4a2f0f5f85122144628ec02077e48841e0e0e82efce88b3415bcfb7c26"
+        }
+      ]
+    },
+    {
+      "id": "p022",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/security-best-practices"
+      ],
+      "rationale": "The user explicitly requests a security review of application code.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/security-best-practices",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "7b3dae1ffc5434d890f3c65c8f552af52d0307fab3b35dec13013c9ca3844c4f"
+        }
+      ]
+    },
+    {
+      "id": "p023",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "obra/superpowers/skills/systematic-debugging"
+      ],
+      "rationale": "The source provides a systematic process for a reproducible bug.",
+      "source_evidence": [
+        {
+          "skill_id": "obra/superpowers/skills/systematic-debugging",
+          "url": "https://github.com/obra/superpowers/tree/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/systematic-debugging",
+          "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+          "manifest_sha256": "51c6435d98c83c42c96ba7c35725a0b2c376cd487fb1a4e6bd0ddbe7e33ef202"
+        }
+      ]
+    },
+    {
+      "id": "p024",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "vercel-labs/agent-skills/skills/react-best-practices"
+      ],
+      "rationale": "The job addresses React performance.",
+      "source_evidence": [
+        {
+          "skill_id": "vercel-labs/agent-skills/skills/react-best-practices",
+          "url": "https://github.com/vercel-labs/agent-skills/tree/6ec269328bc400712ee225a173a14b6b29128df7/skills/react-best-practices",
+          "revision": "6ec269328bc400712ee225a173a14b6b29128df7",
+          "manifest_sha256": "71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355"
+        }
+      ]
+    },
+    {
+      "id": "p025",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "vercel-labs/agent-skills/skills/react-native-skills"
+      ],
+      "rationale": "The task concerns mobile list performance in React Native and Expo.",
+      "source_evidence": [
+        {
+          "skill_id": "vercel-labs/agent-skills/skills/react-native-skills",
+          "url": "https://github.com/vercel-labs/agent-skills/tree/6ec269328bc400712ee225a173a14b6b29128df7/skills/react-native-skills",
+          "revision": "6ec269328bc400712ee225a173a14b6b29128df7",
+          "manifest_sha256": "4012750a5ccbe064ca04af3835d5d1b011979d2d09d9b6df1c8128fac58e0a66"
+        }
+      ]
+    },
+    {
+      "id": "p026",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "vercel-labs/agent-skills/skills/deploy-to-vercel",
+        "openai/skills/skills/.curated/vercel-deploy"
+      ],
+      "rationale": "The requested action is a Vercel preview deployment.",
+      "source_evidence": [
+        {
+          "skill_id": "vercel-labs/agent-skills/skills/deploy-to-vercel",
+          "url": "https://github.com/vercel-labs/agent-skills/tree/6ec269328bc400712ee225a173a14b6b29128df7/skills/deploy-to-vercel",
+          "revision": "6ec269328bc400712ee225a173a14b6b29128df7",
+          "manifest_sha256": "cfcc3dd479ab2e0ae721ddf39b8af84d977321487672f1487c8d6855f576927b"
+        },
+        {
+          "skill_id": "openai/skills/skills/.curated/vercel-deploy",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/vercel-deploy",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "f4a6cbfbb378a320fae179a79f727a881d19677e9b3db96ed49d2dc02a74fa46"
+        }
+      ]
+    },
+    {
+      "id": "p027",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/mcp-builder"
+      ],
+      "rationale": "The requested adapter exposes an external service as assistant tools.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/mcp-builder",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/mcp-builder",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "0f4592dcb53cf2b5d6b7febee6b4152018b565551a1c29e3c612f57b218ab295"
+        }
+      ]
+    },
+    {
+      "id": "p028",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "vercel-labs/agent-skills/skills/react-view-transitions"
+      ],
+      "rationale": "The task concerns React page and shared-element transitions.",
+      "source_evidence": [
+        {
+          "skill_id": "vercel-labs/agent-skills/skills/react-view-transitions",
+          "url": "https://github.com/vercel-labs/agent-skills/tree/6ec269328bc400712ee225a173a14b6b29128df7/skills/react-view-transitions",
+          "revision": "6ec269328bc400712ee225a173a14b6b29128df7",
+          "manifest_sha256": "693acbddd1d2dcf774286867efbc9a5c09dce2da6f21f8e12618187a92f2106a"
+        }
+      ]
+    },
+    {
+      "id": "p029",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/security-ownership-map"
+      ],
+      "rationale": "The goal is security ownership and concentration of knowledge.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/security-ownership-map",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-ownership-map",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "f06c1a59247569326702c945f397af163ea96cf2ecfdf2dde280605bf89a3ec8"
+        }
+      ]
+    },
+    {
+      "id": "p030",
+      "stratum": "relevant",
+      "domain": "engineering",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/security-threat-model"
+      ],
+      "rationale": "The requested artifact is a repository-grounded threat model.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/security-threat-model",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "1283c0dd62a8104d9edda4583569b5d8510b4ddaa45120687c999250fd96bad2"
+        }
+      ]
+    },
+    {
+      "id": "p031",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/pdf"
+      ],
+      "rationale": "The job requires PDF extraction with page provenance.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/pdf",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/pdf",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "9f78b8359fbd4943ad260a7a1e436e5a96503406d6c34e99f69223d647d85b9c"
+        }
+      ]
+    },
+    {
+      "id": "p032",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/pdf"
+      ],
+      "rationale": "The task manipulates PDF documents.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/pdf",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/pdf",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "9f78b8359fbd4943ad260a7a1e436e5a96503406d6c34e99f69223d647d85b9c"
+        }
+      ]
+    },
+    {
+      "id": "p033",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/xlsx"
+      ],
+      "rationale": "The workbook is the main input and output.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/xlsx",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/xlsx",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "6712b39718fe815054abca9c3ee72f989613e6f771c8a5c58f30a65a6c905622"
+        }
+      ]
+    },
+    {
+      "id": "p034",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "anthropics/skills/skills/xlsx"
+      ],
+      "rationale": "The user needs spreadsheet formula inspection and repair.",
+      "source_evidence": [
+        {
+          "skill_id": "anthropics/skills/skills/xlsx",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/xlsx",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "6712b39718fe815054abca9c3ee72f989613e6f771c8a5c58f30a65a6c905622"
+        }
+      ]
+    },
+    {
+      "id": "p035",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/notion-research-documentation"
+      ],
+      "rationale": "The report synthesizes multiple Notion sources with citations.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/notion-research-documentation",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/notion-research-documentation",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "e88a46da978cf6f088a788fa92ee736df699a355a72f41f14bdc258bf3ef57e7"
+        }
+      ]
+    },
+    {
+      "id": "p036",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/pdf",
+        "anthropics/skills/skills/pdf"
+      ],
+      "rationale": "The job combines PDF layout inspection and artifact repair.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/pdf",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "d108cf2b36355ab37eb5962933f4d09785ec002f3105c506129320209306b9d2"
+        },
+        {
+          "skill_id": "anthropics/skills/skills/pdf",
+          "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/pdf",
+          "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+          "manifest_sha256": "9f78b8359fbd4943ad260a7a1e436e5a96503406d6c34e99f69223d647d85b9c"
+        }
+      ]
+    },
+    {
+      "id": "p037",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/jupyter-notebook"
+      ],
+      "rationale": "The requested experiment belongs in a reproducible notebook artifact.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/jupyter-notebook",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/jupyter-notebook",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "62f102e8554b25716dccef0ffab4572d4e3eaf05ccc76562d33a065bc9c521fb"
+        }
+      ]
+    },
+    {
+      "id": "p038",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/transcribe"
+      ],
+      "rationale": "The main work is speaker-aware audio transcription.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/transcribe",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/transcribe",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "f530021da9f377362ee4214e0bc689cbb5404640d2eb88ee272d51d61f530a09"
+        }
+      ]
+    },
+    {
+      "id": "p039",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/sentry"
+      ],
+      "rationale": "The source supports read-only incident investigation.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/sentry",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/sentry",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "508c6f5c100586c81a34397d30f00f4b8771b66d698a7ac1836998df925dd007"
+        }
+      ]
+    },
+    {
+      "id": "p040",
+      "stratum": "relevant",
+      "domain": "research",
+      "approved_skill_ids": [
+        "openai/skills/skills/.system/openai-docs"
+      ],
+      "rationale": "The question requires current official OpenAI product documentation.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.system/openai-docs",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.system/openai-docs",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "669a42ccf3323fe0ceda6e466730bcb05dddf1e0c220d6523ea504909fc49165"
+        }
+      ]
+    },
+    {
+      "id": "p041",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/notion-meeting-intelligence"
+      ],
+      "rationale": "The task prepares a meeting from connected notes.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/notion-meeting-intelligence",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/notion-meeting-intelligence",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "bad61faccbbe0f2cab53bcfbc4cb22f847ba8593ef14c2e37fea5b9b03346332"
+        }
+      ]
+    },
+    {
+      "id": "p042",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/notion-knowledge-capture"
+      ],
+      "rationale": "The job captures team knowledge and decisions in Notion.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/notion-knowledge-capture",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/notion-knowledge-capture",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "b49383b229bc766190ea22bb58502cfcf7e08449f5fce55a104eef1e54e27f00"
+        }
+      ]
+    },
+    {
+      "id": "p043",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/linear"
+      ],
+      "rationale": "The requested action manages issue records in Linear.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/linear",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/linear",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "ce0f39c95b6c9190f8ea33614393cdb556b2684dd8388ded394e9cb915f42601"
+        }
+      ]
+    },
+    {
+      "id": "p044",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "obra/superpowers/skills/executing-plans"
+      ],
+      "rationale": "The user has an existing plan to execute with checkpoints.",
+      "source_evidence": [
+        {
+          "skill_id": "obra/superpowers/skills/executing-plans",
+          "url": "https://github.com/obra/superpowers/tree/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/executing-plans",
+          "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+          "manifest_sha256": "e4649e59880ef2643d1da128e3d607e87e3f969410d72095a5bf65811b6036dc"
+        }
+      ]
+    },
+    {
+      "id": "p045",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "obra/superpowers/skills/brainstorming"
+      ],
+      "rationale": "The user asks to explore options before implementation.",
+      "source_evidence": [
+        {
+          "skill_id": "obra/superpowers/skills/brainstorming",
+          "url": "https://github.com/obra/superpowers/tree/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/brainstorming",
+          "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+          "manifest_sha256": "61a7ef918652108c76a3fd01e02dd92d39996c6b46d4cb2819cbd03f6c45e46a"
+        }
+      ]
+    },
+    {
+      "id": "p046",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "openai/skills/skills/.system/skill-installer"
+      ],
+      "rationale": "The action installs a workflow from a repository while preserving files.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.system/skill-installer",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.system/skill-installer",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "83b31cffb2552a923f4152f0338bea548274accc5489d151a95bced8e7bcfb74"
+        }
+      ]
+    },
+    {
+      "id": "p047",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/gh-address-comments",
+        "obra/superpowers/skills/receiving-code-review"
+      ],
+      "rationale": "The task evaluates and addresses review comments.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/gh-address-comments",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/gh-address-comments",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "77389eefd3fb6584210668ca8e43f4b8de87e7722ddd953474bc9e24cdfaaedd"
+        },
+        {
+          "skill_id": "obra/superpowers/skills/receiving-code-review",
+          "url": "https://github.com/obra/superpowers/tree/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/receiving-code-review",
+          "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+          "manifest_sha256": "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438"
+        }
+      ]
+    },
+    {
+      "id": "p048",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "obra/superpowers/skills/finishing-a-development-branch"
+      ],
+      "rationale": "The source addresses integration after completed implementation.",
+      "source_evidence": [
+        {
+          "skill_id": "obra/superpowers/skills/finishing-a-development-branch",
+          "url": "https://github.com/obra/superpowers/tree/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/finishing-a-development-branch",
+          "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+          "manifest_sha256": "8db5a922b242dd4e1bf824cb91c13b3e8d8e8a86d6ceaf7f0774eb9cce909d65"
+        }
+      ]
+    },
+    {
+      "id": "p049",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/migrate-to-codex"
+      ],
+      "rationale": "The task migrates supported assistant configuration into Codex.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/migrate-to-codex",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/migrate-to-codex",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "145b7fe48360642cb7a42bad3a817f10833fa8a387ffcb4c2df8a47c01a832e2"
+        }
+      ]
+    },
+    {
+      "id": "p050",
+      "stratum": "relevant",
+      "domain": "operations",
+      "approved_skill_ids": [
+        "openai/skills/skills/.curated/cli-creator"
+      ],
+      "rationale": "The user wants a composable CLI over an existing API.",
+      "source_evidence": [
+        {
+          "skill_id": "openai/skills/skills/.curated/cli-creator",
+          "url": "https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/cli-creator",
+          "revision": "49f948faa9258a0c61caceaf225e179651397431",
+          "manifest_sha256": "24058eabf0aafce6def3fb937ac93cbe3fa341c653c658dc589edb77f73d6152"
+        }
+      ]
+    },
+    {
+      "id": "p051",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p052",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p053",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p054",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p055",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p056",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p057",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p058",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p059",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p060",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p061",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p062",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p063",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p064",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p065",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p066",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p067",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p068",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p069",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p070",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p071",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p072",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p073",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p074",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p075",
+      "stratum": "no_match",
+      "domain": "specialist_domain",
+      "approved_skill_ids": [],
+      "rationale": "The baseline has no specialist workflow for this task. Generic writing, planning, or coding advice is not an approved substitute. Human review must confirm this judgment against the evaluated catalog.",
+      "source_evidence": []
+    },
+    {
+      "id": "p076",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p077",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p078",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p079",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p080",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p081",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p082",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p083",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p084",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p085",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p086",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p087",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p088",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p089",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p090",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p091",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p092",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p093",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p094",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p095",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p096",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p097",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p098",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p099",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    },
+    {
+      "id": "p100",
+      "stratum": "trivial",
+      "domain": "conversation",
+      "approved_skill_ids": [],
+      "rationale": "This turn requires no discovery or specialist recommendation.",
+      "source_evidence": []
+    }
+  ]
+}
